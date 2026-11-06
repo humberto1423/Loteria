@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ko'one'ex báaxal - Pequeñas Voces, Grandes Herencias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-cream: #f6f4ef;
+            --ink-dark: #1c2924;
+            --maya-green: #1b4332;
+            --terracotta: #b55338;
+            --sand-border: #dcd6c8;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--ink-dark);
+            min-height: 100vh;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        h1, h2, h3, .font-serif-title {
+            font-family: 'Fraunces', serif;
+        }
+        .font-display {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.01em;
+        }
+        .paper-panel {
+            background-color: #ffffff;
+            border: 1px solid #e2ddd3;
+            box-shadow: 0 4px 20px -2px rgba(28, 41, 36, 0.06), 0 1px 3px rgba(28, 41, 36, 0.04);
+        }
+        .printed-card {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08), inset 0 0 0 6px #ffffff;
+            border: 1px solid rgba(0,0,0,0.14);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .board-sheet {
+            background-color: #ffffff;
+            border: 1px solid #d5cfc2;
+            box-shadow: 0 10px 30px rgba(28, 41, 36, 0.08);
+        }
+        .btn-clean {
+            transition: all 0.15s ease;
+        }
+        .btn-clean:active {
+            transform: scale(0.98);
+        }
+        .card-bounce {
+            animation: cardSlideIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        @keyframes cardSlideIn {
+            0% { transform: translateY(8px) scale(0.97); opacity: 0.4; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        .jade-token {
+            background: radial-gradient(circle at 35% 30%, #52b788 0%, #2d6a4f 65%, #1b4332 100%);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.35), inset 0 2px 3px rgba(255,255,255,0.45);
+            animation: dropToken 0.2s ease-out;
+        }
+        @keyframes dropToken {
+            0% { transform: scale(1.3); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .traffic-housing {
+            background: #1e2226;
+            border: 3px solid #32383e;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.22), inset 0 1px 2px rgba(255,255,255,0.1);
+        }
+        .semaforo-light {
+            transition: all 0.2s ease;
+            background: #2c3237;
+        }
+        .semaforo-light.red-glow {
+            background: #dc2626;
+            box-shadow: 0 0 22px rgba(220, 38, 38, 0.8), inset 0 2px 4px rgba(255,255,255,0.5);
+        }
+        .semaforo-light.yellow-glow {
+            background: #eab308;
+            box-shadow: 0 0 22px rgba(234, 179, 8, 0.8), inset 0 2px 4px rgba(255,255,255,0.5);
+        }
+        .semaforo-light.green-glow {
+            background: #16a34a;
+            box-shadow: 0 0 22px rgba(22, 163, 74, 0.8), inset 0 2px 4px rgba(255,255,255,0.5);
+        }
+        .animal-art-frame {
+            background: radial-gradient(circle at 50% 45%, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.45) 68%, rgba(0,0,0,0.04) 100%);
+            border: 1.5px solid rgba(255,255,255,0.85);
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.06), 0 3px 8px rgba(0,0,0,0.06);
+        }
+        .bot-mini-cell {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            background: #e2ddd3;
+            transition: background 0.2s ease;
+        }
+        .bot-mini-cell.marked {
+            background: #1b4332;
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #ebe7de; border-radius: 6px; }
+        ::-webkit-scrollbar-thumb { background: #b8b0a0; border-radius: 6px; }
+    </style>
+</head>
+<body class="pb-24 overflow-x-hidden">
+
+    <!-- FORMAL CULTURAL HEADER -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200 px-4 py-2.5 shadow-sm">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('inicio')">
+                <div class="w-10 h-10 rounded-xl bg-[#1b4332] text-amber-100 flex items-center justify-center font-serif-title font-bold text-lg shadow-sm border border-emerald-900">
+                    KB
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-base sm:text-lg font-serif-title font-bold text-stone-900 leading-none">
+                            Ko'one'ex báaxal
+                        </h1>
+                        <span id="playerLevelBadge" class="text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-900 px-2 py-0.5 rounded-md border border-amber-300">
+                            Nivel 1 • Guardián
+                        </span>
+                    </div>
+                    <p id="headerLangSubtitle" class="text-[11px] text-stone-500 font-medium mt-0.5">
+                        Pequeñas Voces, Grandes Herencias • T'aan: Chen Maaya
+                    </p>
+                </div>
+            </div>
+
+            <!-- EXCLUSIVE LANGUAGE SELECTOR -->
+            <div class="flex items-center bg-stone-100 p-1 rounded-xl border border-stone-200">
+                <span id="ui-header-lang-label" class="text-[11px] font-semibold text-stone-500 px-2 hidden md:inline">T'aan:</span>
+                <button onclick="setGameLanguage('maya')" id="lang-btn-maya" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition-all bg-[#1b4332] text-white shadow-sm">
+                    Maaya
+                </button>
+                <button onclick="setGameLanguage('es')" id="lang-btn-es" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition-all text-stone-600 hover:text-stone-900">
+                    Español
+                </button>
+                <button onclick="setGameLanguage('en')" id="lang-btn-en" class="px-2.5 py-1 rounded-lg text-xs font-semibold transition-all text-stone-600 hover:text-stone-900">
+                    English
+                </button>
+            </div>
+
+            <!-- Score & Audio Controls -->
+            <div class="flex items-center gap-2">
+                <div class="bg-stone-50 border border-stone-200 rounded-xl px-3 py-1.5 flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-700 inline-block"></span>
+                    <span id="ui-jade-label" class="text-xs text-stone-500 font-medium hidden sm:inline">Tuunich:</span>
+                    <span id="jadeCounter" class="font-bold text-stone-800 text-sm">100</span>
+                </div>
+
+                <div class="bg-stone-50 border border-stone-200 rounded-xl px-2.5 py-1.5 hidden sm:flex items-center gap-1.5">
+                    <span id="ui-streak-label" class="text-xs text-stone-500 font-medium">Lomaj:</span>
+                    <span id="streakCounter" class="font-bold text-amber-700 text-sm">0</span>
+                </div>
+
+                <button id="soundBtn" onclick="toggleSound()" class="btn-clean bg-stone-100 hover:bg-stone-200 text-stone-700 border border-stone-300 rounded-xl px-2.5 py-1.5 text-xs font-semibold flex items-center gap-1">
+                    <span>🔊</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN APP CONTAINER -->
+    <main class="max-w-6xl mx-auto px-4 pt-4">
+
+        <!-- ==========================================
+             VIEW 0: INICIO / PORTADA PRINCIPAL
+             ========================================== -->
+        <section id="view-inicio" class="space-y-6">
+            <div class="rounded-3xl bg-gradient-to-br from-[#1b4332] via-[#234f3c] to-[#122b20] text-white p-6 sm:p-8 shadow-lg border border-emerald-900/60 relative overflow-hidden">
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Columna Izquierda: Texto e Idiomas -->
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="inline-flex items-center gap-2 bg-white/10 border border-white/15 px-3 py-1 rounded-full text-xs font-semibold text-amber-200">
+                            <span id="ui-hero-badge">● Proyecto Artherm • Pequeñas Voces, Grandes Herencias</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-5xl font-serif-title font-bold tracking-tight leading-tight">
+                            Ko'one'ex báaxal
+                        </h2>
+                        <p id="ui-hero-desc" class="text-sm sm:text-base text-emerald-100/90 leading-relaxed max-w-xl">
+                            Aprende y preserva el vocabulario de la fauna regional en lengua maya, español e inglés a través de la lotería tradicional, el semáforo de conservación y rompecabezas interactivos.
+                        </p>
+
+                        <div class="pt-2">
+                            <div id="ui-step1-lang" class="text-xs font-semibold uppercase tracking-wider text-amber-200/90 mb-2">
+                                1. Elige con qué idioma deseas jugar hoy:
+                            </div>
+                            <div class="flex flex-wrap gap-2.5">
+                                <button onclick="setGameLanguage('maya')" id="home-lang-maya" class="btn-clean px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-amber-400 text-stone-950 shadow-md flex items-center gap-2">
+                                    <span>🌿 Báaxal ich Maaya</span>
+                                </button>
+                                <button onclick="setGameLanguage('es')" id="home-lang-es" class="btn-clean px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-white/10 hover:bg-white/20 text-white border border-white/20 flex items-center gap-2">
+                                    <span>🇲🇽 Jugar en Español</span>
+                                </button>
+                                <button onclick="setGameLanguage('en')" id="home-lang-en" class="btn-clean px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-white/10 hover:bg-white/20 text-white border border-white/20 flex items-center gap-2">
+                                    <span>🇺🇸 Play in English</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button onclick="switchTab('loteria')" class="btn-clean bg-white text-[#1b4332] hover:bg-amber-50 font-bold text-sm px-6 py-3 rounded-xl shadow-md inline-flex items-center gap-2">
+                                <span id="ui-hero-cta">🎴 Ookol ti' Lotería</span>
+                                <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Portada Oficial + Tarjetas #4 y #50 con sus imágenes reales -->
+                    <div class="lg:col-span-5 flex justify-center lg:justify-end py-2">
+                        <div class="relative w-64 sm:w-72">
+                            <!-- Marco de la Imagen de Portada -->
+                            <div class="rounded-2xl overflow-hidden border-4 border-white/95 shadow-2xl bg-[#143325] aspect-[3/4]">
+                                <img src="imagenes/portada.jpg" 
+                                     alt="Portada Ko'one'ex báaxal" 
+                                     class="w-full h-full object-cover"
+                                     onerror="if(this.src.endsWith('imagenes/portada.jpg')) this.src='imagenes/portada.png'; else if(this.src.endsWith('imagenes/portada.png')) this.src='portada.jpg'; else if(this.src.endsWith('portada.jpg')) this.src='portada.png'; else if(this.src.endsWith('portada.png')) this.src='imagenes/image-removebg-preview.jpg';">
+                            </div>
+
+                            <!-- Tarjeta Flotante #4 BÁALAM -->
+                            <div onclick="switchTab('loteria')" class="cursor-pointer w-28 sm:w-32 rounded-xl p-2 bg-[#fecaca] text-stone-900 printed-card transform -rotate-6 hover:rotate-0 transition-all shadow-xl" style="position: absolute; bottom: -14px; left: -22px; z-index: 20;">
+                                <div class="flex justify-between items-start mb-1">
+                                    <div id="heroCard4Mayan" class="bg-white border border-stone-900 w-7 h-8 flex flex-col items-center justify-between p-0.5"></div>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-red-600 border border-white"></span>
+                                </div>
+                                <div class="h-14 flex items-center justify-center animal-art-frame rounded-lg mb-1 overflow-hidden">
+                                    <img src="imagenes/4.png" alt="BÁALAM" class="w-full h-full object-contain p-1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <span style="display:none;" class="text-3xl">🐆</span>
+                                </div>
+                                <div id="heroCard4Title" class="bg-white rounded py-0.5 text-center font-extrabold text-[10px] tracking-tight uppercase">BÁALAM</div>
+                            </div>
+
+                            <!-- Tarjeta Flotante #50 PAN CH'EEL -->
+                            <div onclick="switchTab('semaforo')" class="cursor-pointer w-28 sm:w-32 rounded-xl p-2 bg-[#d9f99d] text-stone-900 printed-card transform rotate-6 hover:rotate-0 transition-all shadow-xl" style="position: absolute; top: -14px; right: -18px; z-index: 20;">
+                                <div class="flex justify-between items-start mb-1">
+                                    <div id="heroCard50Mayan" class="bg-white border border-stone-900 w-7 h-8 flex flex-col items-center justify-between p-0.5"></div>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-red-600 border border-white"></span>
+                                </div>
+                                <div class="h-14 flex items-center justify-center animal-art-frame rounded-lg mb-1 overflow-hidden">
+                                    <img src="imagenes/50.png" alt="PAN CH'EEL" class="w-full h-full object-contain p-1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <span style="display:none;" class="text-3xl">🦤</span>
+                                </div>
+                                <div id="heroCard50Title" class="bg-white rounded py-0.5 text-center font-extrabold text-[10px] tracking-tight uppercase">PAN CH'EEL</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 4 Interactive Game Mode Cards -->
+            <div>
+                <div class="flex items-center justify-between mb-3">
+                    <h3 id="ui-step2-title" class="font-serif-title font-bold text-lg sm:text-xl text-stone-900">
+                        2. Selecciona un Modo de Juego
+                    </h3>
+                    <span id="ui-step2-sub" class="text-xs text-stone-500 font-medium">54 tarjetas oficiales incluidas</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div onclick="switchTab('loteria')" class="paper-panel rounded-2xl p-5 cursor-pointer hover:border-emerald-800 transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-11 h-11 rounded-xl bg-emerald-900/10 text-[#1b4332] flex items-center justify-center font-serif-title font-bold text-lg">01</span>
+                                <span id="ui-m1-badge" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">Cantador 7s</span>
+                            </div>
+                            <h4 id="ui-m1-title" class="font-serif-title font-bold text-lg text-stone-900 group-hover:text-[#1b4332]">Lotería Tradicional</h4>
+                            <p id="ui-m1-desc" class="text-xs text-stone-500 mt-1 leading-relaxed">
+                                Juega con los 6 tableros oficiales (Che' 1 al 6). Escucha al cantador y marca tu casilla en 7 segundos antes que tus rivales.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-[#1b4332]">
+                            <span id="ui-m1-action">Entrar a jugar</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+
+                    <div onclick="switchTab('semaforo')" class="paper-panel rounded-2xl p-5 cursor-pointer hover:border-amber-600 transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-11 h-11 rounded-xl bg-red-900/10 text-red-800 flex items-center justify-center font-serif-title font-bold text-lg">02</span>
+                                <span id="ui-m2-badge" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 border border-amber-200">Rojo • Amarillo • Verde</span>
+                            </div>
+                            <h4 id="ui-m2-title" class="font-serif-title font-bold text-lg text-stone-900 group-hover:text-red-800">Semáforo de Extinción</h4>
+                            <p id="ui-m2-desc" class="text-xs text-stone-500 mt-1 leading-relaxed">
+                                Clasifica los animales según su nivel de riesgo: Rojo (peligro alto), Amarillo (riesgo medio) o Verde (a salvo).
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-red-800">
+                            <span id="ui-m2-action">Clasificar fauna</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+
+                    <div onclick="switchTab('puzzle')" class="paper-panel rounded-2xl p-5 cursor-pointer hover:border-stone-700 transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-11 h-11 rounded-xl bg-stone-900/10 text-stone-800 flex items-center justify-center font-serif-title font-bold text-lg">03</span>
+                                <span id="ui-m3-badge" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-stone-100 text-stone-700 border border-stone-200">Puzzles 3x3</span>
+                            </div>
+                            <h4 id="ui-m3-title" class="font-serif-title font-bold text-lg text-stone-900 group-hover:text-stone-700">Rompecabezas Maya</h4>
+                            <p id="ui-m3-desc" class="text-xs text-stone-500 mt-1 leading-relaxed">
+                                Arma las láminas ilustradas de las 54 especies de nuestra región con su numerología maya y desbloquea recompensas.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-stone-800">
+                            <span id="ui-m3-action">Armar láminas</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+
+                    <div onclick="switchTab('codice')" class="paper-panel rounded-2xl p-5 cursor-pointer hover:border-emerald-800 transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-11 h-11 rounded-xl bg-amber-900/10 text-amber-900 flex items-center justify-center font-serif-title font-bold text-lg">04</span>
+                                <span id="ui-m4-badge" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-stone-100 text-stone-700 border border-stone-200">54 Tarjetas</span>
+                            </div>
+                            <h4 id="ui-m4-title" class="font-serif-title font-bold text-lg text-stone-900 group-hover:text-amber-900">Catálogo y Audio</h4>
+                            <p id="ui-m4-desc" class="text-xs text-stone-500 mt-1 leading-relaxed">
+                                Explora las 54 cartas con su numerología maya, filtra por color de semáforo y escucha la pronunciación.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-amber-900">
+                            <span id="ui-m4-action">Explorar catálogo</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             MODE 1: LOTERÍA
+             ========================================== -->
+        <section id="view-loteria" class="hidden space-y-5">
+            <div class="paper-panel rounded-2xl p-3.5 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="flex items-center gap-2">
+                        <label id="ui-lot-board-label" for="boardSelect" class="text-xs font-semibold text-stone-500 uppercase tracking-wider">Tablero:</label>
+                        <select id="boardSelect" onchange="changeBoard()" class="bg-stone-50 text-stone-800 font-semibold text-xs sm:text-sm rounded-xl px-3 py-2 border border-stone-300">
+                            <option value="0" id="ui-board-opt-0">CHE' 1 - JUN (Tablero 1)</option>
+                            <option value="1" id="ui-board-opt-1">CHE' 2 - KA'A (Tablero 2)</option>
+                            <option value="2" id="ui-board-opt-2">CHE' 3 - ÓOX (Tablero 3)</option>
+                            <option value="3" id="ui-board-opt-3">CHE' 4 - KAN (Tablero 4)</option>
+                            <option value="4" id="ui-board-opt-4">CHE' 5 - JO' (Tablero 5)</option>
+                            <option value="5" id="ui-board-opt-5">CHE' 6 - WAK (Tablero 6)</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <label id="ui-lot-lang-label" for="loteriaLangSelect" class="text-xs font-semibold text-stone-500 uppercase tracking-wider">Lengua:</label>
+                        <select id="loteriaLangSelect" onchange="setGameLanguage(this.value)" class="bg-stone-50 text-stone-800 font-semibold text-xs sm:text-sm rounded-xl px-3 py-2 border border-stone-300">
+                            <option value="maya" id="ui-lang-opt-maya">Chen Maaya (Maya Yucateco)</option>
+                            <option value="es" id="ui-lang-opt-es">Solo Español</option>
+                            <option value="en" id="ui-lang-opt-en">English Only</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2.5">
+                    <label id="ui-lot-mode-label" class="text-xs font-semibold text-stone-500 hidden sm:inline">Modalidad:</label>
+                    <select id="winModeSelect" onchange="resetLoteriaGame()" class="bg-stone-50 text-stone-800 text-xs sm:text-sm font-semibold rounded-xl px-3 py-2 border border-stone-300">
+                        <option value="line" id="ui-winmode-line">Línea de 4 cartas</option>
+                        <option value="full" id="ui-winmode-full">Tablero completo (16 cartas)</option>
+                    </select>
+                    <button id="ui-lot-reset-btn" onclick="resetLoteriaGame()" class="btn-clean bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl border border-stone-300">
+                        Reiniciar
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <!-- CANTADOR -->
+                <div class="lg:col-span-5 paper-panel rounded-2xl p-5 flex flex-col items-center">
+                    <div class="w-full flex items-center justify-between pb-3 mb-4 border-b border-stone-200">
+                        <span id="callerHeaderBadge" class="text-xs font-bold uppercase tracking-wider text-stone-600">Cantador • Solo Maya</span>
+                        <span id="deckProgress" class="text-xs font-semibold bg-stone-100 px-3 py-1 rounded-full text-stone-700 border border-stone-200">Carta 0 de 54</span>
+                    </div>
+
+                    <div id="callerCardContainer" class="w-56 sm:w-64 aspect-[3/4] rounded-xl p-4 flex flex-col justify-between relative printed-card bg-[#e8eef2] text-stone-900">
+                        <div class="flex justify-between items-start">
+                            <div id="callerMayanBox" class="bg-white border-2 border-stone-900 w-12 h-14 px-1.5 py-1 flex flex-col items-center justify-between shadow-sm"></div>
+                            <button id="callerSemaforoBadge" onclick="speakCurrentCard()" class="px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-white/90 text-stone-700 border border-stone-300 shadow-sm">
+                                <span id="callerSemaforoText">En espera</span>
+                            </button>
+                        </div>
+
+                        <div class="my-auto flex flex-col items-center justify-center text-center">
+                            <div onclick="speakCurrentCard()" class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl animal-art-frame flex items-center justify-center cursor-pointer transition-transform hover:scale-105 overflow-hidden">
+                                <div id="callerEmoji" class="w-full h-full flex items-center justify-center text-6xl sm:text-7xl select-none">🎴</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg py-2.5 px-3 text-center border border-stone-300/80 shadow-sm">
+                            <div id="callerPrimaryName" class="font-display font-extrabold text-lg sm:text-xl text-stone-900 tracking-wide uppercase">KO'ONE'EX BÁAXAL</div>
+                            <div id="callerSubHint" class="text-[11px] font-medium text-stone-500 mt-0.5">Idioma activo: Solo Maya</div>
+                        </div>
+                    </div>
+
+                    <div class="w-full mt-4 bg-stone-50 border border-stone-200 rounded-xl p-3">
+                        <div class="flex items-center justify-between text-xs font-semibold text-stone-600 mb-1.5">
+                            <span id="countdownStatusLabel">Tiempo para buscar en tu tablero (7s):</span>
+                            <span id="countdownSecondsBadge" class="font-bold text-sm text-[#1b4332] bg-stone-200/80 px-2.5 py-0.5 rounded-md">7s</span>
+                        </div>
+                        <div class="w-full h-2 bg-stone-200 rounded-full overflow-hidden">
+                            <div id="countdownProgressBar" class="h-full bg-[#1b4332] transition-all duration-300" style="width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="w-full grid grid-cols-3 gap-2.5 mt-3.5">
+                        <button id="autoPlayBtn" onclick="toggleAutoCaller()" class="col-span-2 btn-clean bg-[#1b4332] hover:bg-[#143325] text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-xs sm:text-sm shadow-sm">
+                            <span id="autoPlayIcon">▶</span> <span id="autoPlayText">Iniciar Cantador (7s)</span>
+                        </button>
+                        <button onclick="drawNextLoteriaCard(true)" class="btn-clean bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold py-3 px-3 rounded-xl border border-stone-300 flex items-center justify-center gap-1 text-xs sm:text-sm">
+                            <span id="ui-lot-next-btn">Siguiente</span>
+                        </button>
+                    </div>
+
+                    <button onclick="speakCurrentCard()" class="w-full mt-2 btn-clean bg-white hover:bg-stone-50 text-stone-600 font-medium py-2 px-3 rounded-xl border border-stone-200 text-xs flex items-center justify-center gap-1.5">
+                        <span>🔊</span> <span id="ui-lot-repeat-btn">Repetir pronunciación de la carta</span>
+                    </button>
+
+                    <div class="w-full mt-4 pt-3 border-t border-stone-200">
+                        <div class="flex items-center justify-between text-[11px] text-stone-500 font-semibold uppercase tracking-wider mb-2">
+                            <span id="ui-lot-players-label">Jugadores en la mesa:</span>
+                            <span id="ui-lot-playing-status" class="text-emerald-800 font-bold">En partida</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <div class="bg-stone-50 border border-stone-200 rounded-xl p-2.5 flex items-center justify-between">
+                                <div>
+                                    <div id="ui-bot1-name" class="text-xs font-bold text-stone-800">Rival 1: Xooch'</div>
+                                    <div id="bot1CountText" class="text-[11px] text-stone-500">0 / 16 marcadas</div>
+                                </div>
+                                <div id="bot1MiniGrid" class="grid grid-cols-4 gap-0.5"></div>
+                            </div>
+                            <div class="bg-stone-50 border border-stone-200 rounded-xl p-2.5 flex items-center justify-between">
+                                <div>
+                                    <div id="ui-bot2-name" class="text-xs font-bold text-stone-800">Rival 2: Ku'uk</div>
+                                    <div id="bot2CountText" class="text-[11px] text-stone-500">0 / 16 marcadas</div>
+                                </div>
+                                <div id="bot2MiniGrid" class="grid grid-cols-4 gap-0.5"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full mt-3 pt-3 border-t border-stone-200">
+                        <div id="ui-lot-history-label" class="text-[11px] text-stone-500 font-semibold uppercase tracking-wider mb-1.5">Historial de cartas cantadas:</div>
+                        <div id="drawnHistoryStrip" class="flex items-center gap-1.5 overflow-x-auto pb-1 min-h-[34px]"></div>
+                    </div>
+                </div>
+
+                <!-- TABLERO 4x4 -->
+                <div class="lg:col-span-7 board-sheet rounded-2xl p-4 sm:p-6">
+                    <div class="flex items-center justify-between border-b border-stone-200 pb-3 mb-4">
+                        <div>
+                            <h2 class="font-serif-title font-bold text-lg sm:text-xl text-stone-900">Ko'one'ex báaxal</h2>
+                            <p id="ui-lot-board-instr" class="text-xs text-stone-500">Toca las tarjetas de tu tablero en cuanto las anuncie el cantador</p>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <span id="boardTitleLabel" class="font-bold text-sm sm:text-base text-stone-800 tracking-wide">CHE' 1 (JUN)</span>
+                            <div id="boardHeaderMayanNum" class="bg-white border-2 border-stone-900 w-10 h-12 flex flex-col items-center justify-between p-0.5"></div>
+                        </div>
+                    </div>
+
+                    <div id="loteriaBoardGrid" class="grid grid-cols-4 gap-2.5 sm:gap-3"></div>
+
+                    <div class="mt-5 pt-3 border-t border-stone-200">
+                        <button onclick="claimLoteriaWin()" class="btn-clean w-full bg-[#b55338] hover:bg-[#9e462e] text-white font-serif-title font-bold text-base sm:text-lg py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-sm">
+                            <span id="ui-lot-win-btn">¡Ko'one'ex báaxal! (Gritar Lotería)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             MODE 2: SEMÁFORO DE CONSERVACIÓN
+             ========================================== -->
+        <section id="view-semaforo" class="hidden space-y-5">
+            <div class="paper-panel rounded-2xl p-5 sm:p-6">
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-6 border-b border-stone-200">
+                    <div>
+                        <h2 id="ui-sem-title" class="text-xl sm:text-2xl font-serif-title font-bold text-stone-900">Semáforo de Conservación de la Fauna</h2>
+                        <p id="ui-sem-subtitle" class="text-xs sm:text-sm text-stone-500 mt-0.5">Selecciona el nivel de riesgo de extinción correspondiente a cada especie de nuestra región.</p>
+                    </div>
+                    <div class="flex items-center gap-4 bg-stone-50 px-4 py-2 rounded-xl border border-stone-200">
+                        <div class="text-center">
+                            <div id="ui-sem-hits-label" class="text-[10px] text-stone-500 uppercase font-semibold">Aciertos</div>
+                            <div id="semaforoScore" class="font-bold text-base text-stone-900">0</div>
+                        </div>
+                        <div class="h-6 w-px bg-stone-300"></div>
+                        <div class="text-center">
+                            <div id="ui-sem-streak-label" class="text-[10px] text-stone-500 uppercase font-semibold">Racha</div>
+                            <div id="semaforoCombo" class="font-bold text-base text-[#1b4332]">x1</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center py-2">
+                    <div class="md:col-span-5 flex flex-col items-center">
+                        <div id="semaforoCard" class="w-60 sm:w-64 aspect-[3/4] rounded-xl p-4 flex flex-col justify-between relative printed-card text-stone-900 bg-sky-100 card-bounce">
+                            <div class="flex justify-between items-start">
+                                <div id="semMayanBox" class="bg-white border-2 border-stone-900 w-12 h-14 px-1.5 py-1 flex flex-col items-center justify-between shadow-sm"></div>
+                                <button id="ui-sem-speak-btn" onclick="speakCardById(currentSemaforoCard.id)" class="bg-white/95 hover:bg-white text-stone-800 px-3 py-1 rounded-md text-xs font-semibold border border-stone-300 shadow-sm">
+                                    🔊 Pronunciar
+                                </button>
+                            </div>
+                            <div class="my-auto text-center">
+                                <div id="semEmoji" class="text-7xl sm:text-8xl select-none"></div>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 text-center border border-stone-300/80 shadow-sm">
+                                <div id="semPrimaryName" class="font-display font-extrabold text-xl text-stone-900 uppercase">BÁALAM</div>
+                                <div id="semLangTag" class="text-[11px] font-medium text-stone-500 mt-0.5">Idioma: Solo Maya</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-7 flex flex-col items-center md:items-start">
+                        <span id="ui-sem-choose-label" class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3">Selecciona el color del semáforo:</span>
+                        <div class="flex flex-col sm:flex-row items-center gap-5 w-full">
+                            <div class="traffic-housing rounded-2xl p-3.5 flex flex-row sm:flex-col gap-3 items-center shrink-0">
+                                <div id="lightRed" onclick="guessSemaforo('red')" class="semaforo-light w-14 h-14 rounded-full border-2 border-stone-600 cursor-pointer"></div>
+                                <div id="lightYellow" onclick="guessSemaforo('yellow')" class="semaforo-light w-14 h-14 rounded-full border-2 border-stone-600 cursor-pointer"></div>
+                                <div id="lightGreen" onclick="guessSemaforo('green')" class="semaforo-light w-14 h-14 rounded-full border-2 border-stone-600 cursor-pointer"></div>
+                            </div>
+
+                            <div class="flex flex-col gap-2.5 w-full">
+                                <button onclick="guessSemaforo('red')" class="btn-clean bg-white hover:bg-red-50/60 text-stone-900 py-3 px-4 rounded-xl border border-stone-300 hover:border-red-400 text-left flex items-center gap-3.5 shadow-sm">
+                                    <span class="w-4 h-4 rounded-full bg-red-600 shrink-0"></span>
+                                    <div>
+                                        <div id="ui-sem-red-title" class="font-bold text-sm text-stone-900">Rojo • Peligro de extinción alto</div>
+                                        <div id="ui-sem-red-desc" class="text-xs text-stone-500">Especie prioritaria para conservación en la región</div>
+                                    </div>
+                                </button>
+                                <button onclick="guessSemaforo('yellow')" class="btn-clean bg-white hover:bg-amber-50/60 text-stone-900 py-3 px-4 rounded-xl border border-stone-300 hover:border-amber-400 text-left flex items-center gap-3.5 shadow-sm">
+                                    <span class="w-4 h-4 rounded-full bg-amber-500 shrink-0"></span>
+                                    <div>
+                                        <div id="ui-sem-yellow-title" class="font-bold text-sm text-stone-900">Amarillo • Riesgo moderado</div>
+                                        <div id="ui-sem-yellow-desc" class="text-xs text-stone-500">Población vulnerable o amenazada por pérdida de hábitat</div>
+                                    </div>
+                                </button>
+                                <button onclick="guessSemaforo('green')" class="btn-clean bg-white hover:bg-emerald-50/60 text-stone-900 py-3 px-4 rounded-xl border border-stone-300 hover:border-emerald-500 text-left flex items-center gap-3.5 shadow-sm">
+                                    <span class="w-4 h-4 rounded-full bg-emerald-600 shrink-0"></span>
+                                    <div>
+                                        <div id="ui-sem-green-title" class="font-bold text-sm text-stone-900">Verde • Sin peligro actual</div>
+                                        <div id="ui-sem-green-desc" class="text-xs text-stone-500">Especie doméstica o con población estable</div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="semaforoFeedback" class="mt-5 min-h-[52px] w-full bg-stone-100 border border-stone-200 rounded-xl p-3 text-center flex items-center justify-center text-xs sm:text-sm font-medium text-stone-600">
+                            Haz clic en una de las tres categorías del semáforo para verificar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             MODE 3: ROMPECABEZAS (CON LAS 54 IMÁGENES)
+             ========================================== -->
+        <section id="view-puzzle" class="hidden space-y-5">
+            <div class="paper-panel rounded-2xl p-5 sm:p-6">
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-6 border-b border-stone-200">
+                    <div>
+                        <h2 id="ui-puz-title" class="text-xl sm:text-2xl font-serif-title font-bold text-stone-900">Rompecabezas de Tarjetas Regionales</h2>
+                        <p id="ui-puz-subtitle" class="text-xs sm:text-sm text-stone-500 mt-0.5">Selecciona dos piezas para intercambiar su posición hasta completar la lámina.</p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <select id="puzzleAnimalSelect" onchange="initPuzzle()" class="bg-stone-50 text-stone-800 font-semibold text-xs sm:text-sm rounded-xl px-3.5 py-2 border border-stone-300"></select>
+                        <button id="ui-puz-shuffle-btn" onclick="shufflePuzzle()" class="btn-clean bg-[#1b4332] hover:bg-[#143325] text-white font-semibold text-xs sm:text-sm px-4 py-2 rounded-xl">
+                            Mezclar piezas
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-7 flex flex-col items-center">
+                        <div id="puzzleGrid" class="grid grid-cols-3 gap-1.5 bg-stone-200 p-2 rounded-2xl border border-stone-300 shadow-inner w-72 h-72 sm:w-80 sm:h-80"></div>
+                        <p id="ui-puz-instr" class="text-xs font-medium text-stone-500 mt-3">Toca una pieza y luego otra para intercambiarlas.</p>
+                    </div>
+
+                    <div class="md:col-span-5 bg-stone-50 border border-stone-200 rounded-2xl p-5 flex flex-col items-center text-center">
+                        <span id="ui-puz-ref-label" class="text-[11px] font-bold uppercase tracking-wider text-stone-400 mb-2">Lámina de referencia</span>
+                        <div id="puzzlePreviewCard" class="w-40 aspect-[3/4] rounded-xl p-2.5 flex flex-col justify-between printed-card mb-3"></div>
+                        <h3 id="puzzleInfoTitle" class="font-serif-title font-bold text-xl text-stone-900">BÁALAM</h3>
+                        <p id="puzzleInfoLanguages" class="text-xs text-stone-500 mt-0.5">Idioma activo: Solo Maya</p>
+                        <div id="puzzleInfoBadge" class="mt-2.5 px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800 border border-red-200">
+                            Semáforo Rojo: En Peligro
+                        </div>
+                        <button id="ui-puz-speak-btn" onclick="speakCardById(Number(document.getElementById('puzzleAnimalSelect').value))" class="btn-clean mt-4 bg-white hover:bg-stone-100 text-stone-800 text-xs font-semibold px-4 py-2 rounded-xl border border-stone-300">
+                            🔊 Escuchar pronunciación
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             MODE 4: CATÁLOGO DE LAS 54 CARTAS
+             ========================================== -->
+        <section id="view-codice" class="hidden space-y-5">
+            <div class="paper-panel rounded-2xl p-5 sm:p-6">
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-stone-200">
+                    <div>
+                        <h2 id="ui-cat-title" class="text-xl sm:text-2xl font-serif-title font-bold text-stone-900">Catálogo Oficial de las 54 Tarjetas</h2>
+                        <p id="ui-cat-subtitle" class="text-xs sm:text-sm text-stone-500 mt-0.5">Haz clic sobre cualquier tarjeta para escuchar su pronunciación en el idioma seleccionado.</p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <button onclick="filterCodice('all')" id="filter-all" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-stone-900 text-white">Todas (54)</button>
+                        <button onclick="filterCodice('red')" id="filter-red" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-50 text-red-800 border border-red-200 hover:bg-red-100">● Peligro Alto</button>
+                        <button onclick="filterCodice('yellow')" id="filter-yellow" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100">● Riesgo Medio</button>
+                        <button onclick="filterCodice('green')" id="filter-green" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100">● Sin Peligro</button>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <input id="codiceSearch" type="text" oninput="renderCodiceGallery()" placeholder="Buscar animal por nombre en Maya, Español, Inglés o número (1-54)..." class="w-full bg-stone-50 text-stone-800 placeholder-stone-400 text-sm rounded-xl px-4 py-2.5 border border-stone-300 focus:outline-none focus:border-stone-600">
+                </div>
+
+                <div id="codiceGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BARRA INFERIOR DE NAVEGACIÓN -->
+    <nav class="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-stone-200 px-2 py-1.5 shadow-lg">
+        <div class="max-w-xl mx-auto grid grid-cols-5 gap-1">
+            <button onclick="switchTab('inicio')" id="tab-inicio" class="py-1.5 px-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[#1b4332] bg-emerald-50/90 font-bold text-[11px] transition-all">
+                <span class="text-base leading-none">🏛️</span>
+                <span id="ui-nav-home">Inicio</span>
+            </button>
+            <button onclick="switchTab('loteria')" id="tab-loteria" class="py-1.5 px-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-stone-500 hover:text-stone-900 font-semibold text-[11px] transition-all">
+                <span class="text-base leading-none">🎴</span>
+                <span id="ui-nav-loteria">Lotería</span>
+            </button>
+            <button onclick="switchTab('semaforo')" id="tab-semaforo" class="py-1.5 px-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-stone-500 hover:text-stone-900 font-semibold text-[11px] transition-all">
+                <span class="text-base leading-none">🚦</span>
+                <span id="ui-nav-semaforo">Semáforo</span>
+            </button>
+            <button onclick="switchTab('puzzle')" id="tab-puzzle" class="py-1.5 px-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-stone-500 hover:text-stone-900 font-semibold text-[11px] transition-all">
+                <span class="text-base leading-none">🧩</span>
+                <span id="ui-nav-puzzle">Puzzles</span>
+            </button>
+            <button onclick="switchTab('codice')" id="tab-codice" class="py-1.5 px-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-stone-500 hover:text-stone-900 font-semibold text-[11px] transition-all">
+                <span class="text-base leading-none">📖</span>
+                <span id="ui-nav-codice">Catálogo</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MODAL -->
+    <div id="gameModal" class="fixed inset-0 z-50 hidden bg-stone-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white border border-stone-200 rounded-2xl max-w-md w-full p-6 text-center shadow-xl card-bounce">
+            <div id="modalIcon" class="text-4xl mb-2">🏆</div>
+            <h3 id="modalTitle" class="font-serif-title font-bold text-xl text-stone-900 mb-2">Ko'one'ex báaxal</h3>
+            <p id="modalMessage" class="text-sm text-stone-600 mb-6"></p>
+            <button id="ui-modal-continue-btn" onclick="closeModal()" class="btn-clean w-full bg-[#1b4332] hover:bg-[#143325] text-white font-semibold py-2.5 rounded-xl text-sm">
+                Continuar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        /* =====================================================================
+           DICCIONARIO COMPLETO TRILINGÜE DE LA INTERFAZ (MAYA / ESPAÑOL / INGLÉS)
+           ===================================================================== */
+        const UI_TEXTS = {
+            maya: {
+                langLabel: "Chen Maaya",
+                headerLangWord: "T'aan:",
+                headerSubtitle: "Pequeñas Voces, Grandes Herencias • T'aan: Chen Maaya",
+                jadeLabel: "Tuunich:",
+                streakLabel: "Lomaj:",
+                levelWord: "Nivel",
+                ranks: ["Kanan K'áax", "Xíimbal Maaya", "J-Miatsil", "Nojoch Ah K'in"],
+                heroBadge: "● Meyaj Artherm • Chan T'aano'ob, Nojoch Ch'i'ibalo'ob",
+                heroDesc: "Kan yéetel kanan u k'aaba' ba'alche'ob ich maaya t'aan, káastlan yéetel inglés yéetel le báaxal lotería, u sáasilil kanan kuxtal yéetel puzzles.",
+                step1Lang: "1. Yéey máakalmáak t'aan a k'áat báaxal bejla'e':",
+                heroCta: "🎴 Ookol ti' Lotería",
+                step2Title: "2. Yéey bix a k'áat báaxal",
+                step2Sub: "54 u p'éel yoochel ba'alche'ob",
+                m1Badge: "K'aay 7s",
+                m1Title: "Lotería Maaya",
+                m1Desc: "Báaxal yéetel le 6 u p'éel Che' (1 tak 6). U'uy le k'aayo' ka a ts'áa u chíikul ichil 7 segundos.",
+                m1Action: "Ookol báaxal",
+                m2Badge: "Chak • K'an • Ya'ax",
+                m2Title: "Sáasilil Kanan Ba'alche'",
+                m2Desc: "Ts'áa u boonil le ba'alche'o': Chak (nojoch sajbe'entsil), K'an ( chúumuk) wa Ya'ax (ma'alob).",
+                m2Action: "Káajal",
+                m3Badge: "Puzzles 3x3",
+                m3Title: "Puzzles Maaya",
+                m3Desc: "Nu'ukbes u yoochel le 54 ba'alche'ob yéetel u xookil maaya.",
+                m3Action: "Nu'ukbes yoochel",
+                m4Badge: "54 Yoochelo'ob",
+                m4Title: "Áanalte' yéetel U'uyaj",
+                m4Desc: "Ilawil tuláakal le 54 ba'alche'obo', u xookil maaya yéetel u'uy bix u ya'ala'al.",
+                m4Action: "Ilawil áanalte'",
+                lotBoardLabel: "Che':",
+                boardOptPrefix: "Tablero",
+                lotLangLabel: "T'aan:",
+                lotModeLabel: "Bix u náajal:",
+                winModeLine: "4 u p'éel ti' tsol (Línea)",
+                winModeFull: "Chúuka'an Che' (16)",
+                lotResetBtn: "Káajal tu ka'atéen",
+                callerPrefix: "J-K'aay",
+                deckProgress: (curr, total) => `Yoochel ${curr} ti' ${total}`,
+                waitingStatus: "Páa'taj...",
+                activeLangPrefix: "T'aan:",
+                cardNumPrefix: "Yoochel",
+                timerDefault: "Súutuk utia'al a kaxtik ti' a Che' (7s):",
+                timerSearching: "Kaxt le ba'alche' ti' a Che':",
+                timerNext: " táan u máan uláak' yoochel...",
+                timerDone: "Ts'o'ok u súutuk •ets' Uláak'",
+                timerSpeaking: "Táan u ya'ala'al u k'aaba'...",
+                startCallerBtn: "Káens J-K'aay (7s)",
+                pauseCallerBtn: "Je'els J-K'aay",
+                nextCardBtn: "Uláak'",
+                repeatAudioBtn: "U'uy u k'aaba' tu ka'atéen",
+                playersTableLabel: "Éet báaxalo'ob:",
+                playingStatus: "Táan u báaxal",
+                bot1Name: "Éet 1: Xooch'",
+                bot2Name: "Éet 2: Ku'uk",
+                botMarked: (n) => `${n} / 16 ts'a'aban`,
+                historyLabel: "Yoochelo'ob ts'o'ok u k'a'ayta'al:",
+                historyEmpty: "Mix junp'éel yoochel k'a'ayta'an...",
+                boardInstr: "Mach le ba'alche' ti' a Che' le ken k'a'ayta'ak tumen le J-K'aayo'",
+                winShoutBtn: "¡Ko'one'ex báaxal! (Náajal)",
+                statusRedBadge: "● Chak (Nojoch Sajbe'entsil)",
+                statusYellowBadge: "● K'an (Chúumuk)",
+                statusGreenBadge: "● Ya'ax (Ma'alob)",
+                shortRed: "Chak",
+                shortYellow: "K'an",
+                shortGreen: "Ya'ax",
+                semTitle: "U Sáasilil Kanan Ba'alche'ob",
+                semSubtitle: "Yéey máakalmáak boonil ku náajmatik le ba'alche'a' yo'osal u kuxtal.",
+                semHitsLabel: "Ma'alob",
+                semStreakLabel: "Lomaj",
+                semSpeakBtn: "🔊 U'uy t'aan",
+                semChooseLabel: "Yéey u boonil le sáasilo':",
+                semRedTitle: "Chak • Nojoch sajbe'entsil ch'éejel",
+                semRedDesc: "Ba'alche' k'a'abéet u kaláanta'al séeba'an",
+                semYellowTitle: "K'an • Chúumuk sajbe'entsil",
+                semYellowDesc: "Táan u p'íitchajal tu'ux ku kuxtal",
+                semGreenTitle: "Ya'ax • Ma'alob yanil",
+                semGreenDesc: "Ba'alche' ya'ab yanil wa alak'bil",
+                semFeedbackInit: "Mach junp'éel ti' le óoxp'éel boonilo'ob utia'al a wilik.",
+                semCorrectMsg: (word, colorText) => `¡Ma'alob!: ${word} tia'an ti' ${colorText}.`,
+                semWrongMsg: (word, colorText) => `Ma' leti'i': ${word} u boonile' ${colorText}.`,
+                puzTitle: "Puzzles ti' Ba'alche'ob",
+                puzSubtitle: "Mach ka'ap'éel xéet'el utia'al a k'exik u kúuchil tak a chúukbesik.",
+                puzShuffleBtn: "Xa'ak't xéet'elo'ob",
+                puzInstr: "Mach junp'éel xéet'el yéetel uláak' utia'al a k'exiko'ob.",
+                puzRefLabel: "Yoochel e'esajil",
+                puzSpeakBtn: "🔊 U'uy bix u ya'ala'al",
+                puzSolvedTitle: (word) => `¡Ts'o'ok a nu'ukbesik ${word}!`,
+                puzSolvedMsg: (word) => `Ts'o'ok a chúukbesik u yoochel ${word} ka ta náajaltaj +30 Tuunich.`,
+                catTitle: "Áanalte' ti' le 54 Ba'alche'obo'",
+                catSubtitle: "Mach je'el máakalmáak yoochel utia'al a wu'uyik bix u ya'ala'al.",
+                filterAll: "Tuláakal (54)",
+                filterRed: "● Chak",
+                filterYellow: "● K'an",
+                filterGreen: "● Ya'ax",
+                searchPlaceholder: "Kaxt ba'alche' ich Maaya, Español, Inglés wa xookil (1-54)...",
+                listenAudioLabel: "U'uy t'aan",
+                navHome: "Káajbal",
+                navLoteria: "Lotería",
+                navSemaforo: "Sáasil",
+                navPuzzle: "Puzzles",
+                navCodice: "Áanalte'",
+                modalContinue: "Seguirt",
+                modalEndDeckTitle: "Ts'o'ok le 54 yoochelo'obo'",
+                modalEndDeckMsg: "Ts'o'ok u k'a'ayta'al tuláakal. Káens uláak' báaxal.",
+                modalNotCalledTitle: (word) => `Ma' jóok'ok "${word}"i'`,
+                modalNotCalledMsg: (word) => `K'a'abéet a páa'tik u k'a'ayta'al "${word}" tumen le J-K'aayo'.`,
+                modalWinTitle: "¡Ko'one'ex báaxal! ¡Náajalnajech!",
+                modalWinMsg: "Ts'o'ok a chúukbesik a Che' ma'alob ka ta náajaltaj +50 Tuunich.",
+                modalIncompleteTitle: "Ma' chúuka'an a Che'i'",
+                modalIncompleteMsg: "Bin u p'éel yoochelo'ob k'a'ayta'an utia'al a náajal."
+            },
+            es: {
+                langLabel: "Solo Español",
+                headerLangWord: "Idioma:",
+                headerSubtitle: "Pequeñas Voces, Grandes Herencias • Idioma: Solo Español",
+                jadeLabel: "Jade:",
+                streakLabel: "Racha:",
+                levelWord: "Nivel",
+                ranks: ["Guardián", "Explorador Maya", "Sabio del Monte", "Maestro Ah K'in"],
+                heroBadge: "● Proyecto Artherm • Pequeñas Voces, Grandes Herencias",
+                heroDesc: "Aprende y preserva el vocabulario de la fauna regional en lengua maya, español e inglés a través de la lotería tradicional, el semáforo de conservación y rompecabezas interactivos.",
+                step1Lang: "1. Elige con qué idioma deseas jugar hoy:",
+                heroCta: "🎴 Entrar a la Lotería",
+                step2Title: "2. Selecciona un Modo de Juego",
+                step2Sub: "54 tarjetas oficiales incluidas",
+                m1Badge: "Cantador 7s",
+                m1Title: "Lotería Tradicional",
+                m1Desc: "Juega con los 6 tableros oficiales (Che' 1 al 6). Escucha al cantador y marca tu casilla en 7 segundos antes que tus rivales.",
+                m1Action: "Entrar a jugar",
+                m2Badge: "Rojo • Amarillo • Verde",
+                m2Title: "Semáforo de Extinción",
+                m2Desc: "Clasifica los animales según su nivel de riesgo: Rojo (peligro alto), Amarillo (riesgo medio) o Verde (a salvo).",
+                m2Action: "Clasificar fauna",
+                m3Badge: "Puzzles 3x3",
+                m3Title: "Rompecabezas Maya",
+                m3Desc: "Arma las láminas ilustradas de las 54 especies de nuestra región con su numerología maya y desbloquea recompensas.",
+                m3Action: "Armar láminas",
+                m4Badge: "54 Tarjetas",
+                m4Title: "Catálogo y Audio",
+                m4Desc: "Explora las 54 cartas con su numerología maya, filtra por color de semáforo y escucha la pronunciación.",
+                m4Action: "Explorar catálogo",
+                lotBoardLabel: "Tablero:",
+                boardOptPrefix: "Tablero",
+                lotLangLabel: "Lengua:",
+                lotModeLabel: "Modalidad:",
+                winModeLine: "Línea de 4 cartas",
+                winModeFull: "Tablero completo (16 cartas)",
+                lotResetBtn: "Reiniciar",
+                callerPrefix: "Cantador",
+                deckProgress: (curr, total) => `Carta ${curr} de ${total}`,
+                waitingStatus: "En espera",
+                activeLangPrefix: "Idioma activo:",
+                cardNumPrefix: "Tarjeta",
+                timerDefault: "Tiempo para buscar en tu tablero (7s):",
+                timerSearching: "Busca la carta en tu tablero:",
+                timerNext: "Pasando a la siguiente carta...",
+                timerDone: "Tiempo concluido • Presiona Siguiente",
+                timerSpeaking: "Pronunciando carta...",
+                startCallerBtn: "Iniciar Cantador (7s)",
+                pauseCallerBtn: "Pausar Cantador",
+                nextCardBtn: "Siguiente",
+                repeatAudioBtn: "Repetir pronunciación de la carta",
+                playersTableLabel: "Jugadores en la mesa:",
+                playingStatus: "En partida",
+                bot1Name: "Rival 1: Xooch'",
+                bot2Name: "Rival 2: Ku'uk",
+                botMarked: (n) => `${n} / 16 marcadas`,
+                historyLabel: "Historial de cartas cantadas:",
+                historyEmpty: "Sin cartas cantadas...",
+                boardInstr: "Toca las tarjetas de tu tablero en cuanto las anuncie el cantador",
+                winShoutBtn: "¡Ko'one'ex báaxal! (Gritar Lotería)",
+                statusRedBadge: "● Peligro Alto",
+                statusYellowBadge: "● Riesgo Medio",
+                statusGreenBadge: "● Sin Peligro",
+                shortRed: "Rojo",
+                shortYellow: "Amarillo",
+                shortGreen: "Verde",
+                semTitle: "Semáforo de Conservación de la Fauna",
+                semSubtitle: "Selecciona el nivel de riesgo de extinción correspondiente a cada especie de nuestra región.",
+                semHitsLabel: "Aciertos",
+                semStreakLabel: "Racha",
+                semSpeakBtn: "🔊 Pronunciar",
+                semChooseLabel: "Selecciona el color del semáforo:",
+                semRedTitle: "Rojo • Peligro de extinción alto",
+                semRedDesc: "Especie prioritaria para conservación en la región",
+                semYellowTitle: "Amarillo • Riesgo moderado",
+                semYellowDesc: "Población vulnerable o amenazada por pérdida de hábitat",
+                semGreenTitle: "Verde • Sin peligro actual",
+                semGreenDesc: "Especie doméstica o con población estable",
+                semFeedbackInit: "Haz clic en una de las tres categorías del semáforo para verificar.",
+                semCorrectMsg: (word, colorText) => `Correcto: ${word} está en semáforo ${colorText}.`,
+                semWrongMsg: (word, colorText) => `Incorrecto: ${word} corresponde al semáforo ${colorText}.`,
+                puzTitle: "Rompecabezas de Tarjetas Regionales",
+                puzSubtitle: "Selecciona dos piezas para intercambiar su posición hasta completar la lámina.",
+                puzShuffleBtn: "Mezclar piezas",
+                puzInstr: "Toca una pieza y luego otra para intercambiarlas.",
+                puzRefLabel: "Lámina de referencia",
+                puzSpeakBtn: "🔊 Escuchar pronunciación",
+                puzSolvedTitle: (word) => `¡Armaste a ${word}!`,
+                puzSolvedMsg: (word) => `Completaste el rompecabezas de ${word} y ganaste +30 Fichas de Jade.`,
+                catTitle: "Catálogo Oficial de las 54 Tarjetas",
+                catSubtitle: "Haz clic sobre cualquier tarjeta para escuchar su pronunciación en el idioma seleccionado.",
+                filterAll: "Todas (54)",
+                filterRed: "● Peligro Alto",
+                filterYellow: "● Riesgo Medio",
+                filterGreen: "● Sin Peligro",
+                searchPlaceholder: "Buscar animal por nombre en Maya, Español, Inglés o número (1-54)...",
+                listenAudioLabel: "Escuchar audio",
+                navHome: "Inicio",
+                navLoteria: "Lotería",
+                navSemaforo: "Semáforo",
+                navPuzzle: "Puzzles",
+                navCodice: "Catálogo",
+                modalContinue: "Continuar",
+                modalEndDeckTitle: "Fin del mazo (54 cartas)",
+                modalEndDeckMsg: "Se han cantado todas las tarjetas. Inicia una nueva partida para barajar de nuevo.",
+                modalNotCalledTitle: (word) => `Aún no ha salido "${word}"`,
+                modalNotCalledMsg: (word) => `Debes esperar a que el cantador anuncie "${word}" antes de colocar tu marcador.`,
+                modalWinTitle: "¡Ko'one'ex báaxal! ¡Tablero completado!",
+                modalWinMsg: "Has completado correctamente tu tablero de lotería y sumado 50 puntos.",
+                modalIncompleteTitle: "Tablero incompleto",
+                modalIncompleteMsg: "Aún te faltan casillas cantadas para completar la modalidad seleccionada."
+            },
+            en: {
+                langLabel: "English Only",
+                headerLangWord: "Language:",
+                headerSubtitle: "Little Voices, Great Heritage • Language: English Only",
+                jadeLabel: "Jade:",
+                streakLabel: "Streak:",
+                levelWord: "Level",
+                ranks: ["Guardian", "Mayan Explorer", "Jungle Sage", "Master Ah K'in"],
+                heroBadge: "● Artherm Project • Little Voices, Great Heritage",
+                heroDesc: "Learn and preserve regional wildlife vocabulary in Yucatec Maya, Spanish, and English through traditional Lotería, the conservation traffic light, and interactive puzzles.",
+                step1Lang: "1. Choose the language you want to play in today:",
+                heroCta: "🎴 Play Lotería Now",
+                step2Title: "2. Select a Game Mode",
+                step2Sub: "All 54 official cards included",
+                m1Badge: "7s Caller",
+                m1Title: "Traditional Lotería",
+                m1Desc: "Play with the 6 official boards (Che' 1 to 6). Listen to the caller and mark your board within 7 seconds before your rivals.",
+                m1Action: "Start playing",
+                m2Badge: "Red • Yellow • Green",
+                m2Title: "Conservation Traffic Light",
+                m2Desc: "Classify animals by their extinction risk level: Red (high danger), Yellow (moderate risk), or Green (safe).",
+                m2Action: "Classify wildlife",
+                m3Badge: "3x3 Puzzles",
+                m3Title: "Mayan Puzzles",
+                m3Desc: "Assemble the illustrated cards of all 54 regional species with their Mayan numerals and unlock rewards.",
+                m3Action: "Solve puzzles",
+                m4Badge: "54 Cards",
+                m4Title: "Catalog & Audio",
+                m4Desc: "Explore all 54 cards with Mayan numerals, filter by conservation status, and listen to pronunciation.",
+                m4Action: "Explore catalog",
+                lotBoardLabel: "Board:",
+                boardOptPrefix: "Board",
+                lotLangLabel: "Language:",
+                lotModeLabel: "Win Mode:",
+                winModeLine: "4-Card Line",
+                winModeFull: "Full Board (16 cards)",
+                lotResetBtn: "Restart",
+                callerPrefix: "Caller",
+                deckProgress: (curr, total) => `Card ${curr} of ${total}`,
+                waitingStatus: "Waiting",
+                activeLangPrefix: "Active language:",
+                cardNumPrefix: "Card",
+                timerDefault: "Time to find on your board (7s):",
+                timerSearching: "Find the card on your board:",
+                timerNext: "Moving to the next card...",
+                timerDone: "Time's up • Press Next",
+                timerSpeaking: "Announcing card...",
+                startCallerBtn: "Start Caller (7s)",
+                pauseCallerBtn: "Pause Caller",
+                nextCardBtn: "Next",
+                repeatAudioBtn: "Repeat card pronunciation",
+                playersTableLabel: "Players at the table:",
+                playingStatus: "In game",
+                bot1Name: "Rival 1: Xooch'",
+                bot2Name: "Rival 2: Ku'uk",
+                botMarked: (n) => `${n} / 16 marked`,
+                historyLabel: "Called cards history:",
+                historyEmpty: "No cards called yet...",
+                boardInstr: "Tap the cards on your board as soon as the caller announces them",
+                winShoutBtn: "¡Ko'one'ex báaxal! (Claim Win)",
+                statusRedBadge: "● High Danger",
+                statusYellowBadge: "● Moderate Risk",
+                statusGreenBadge: "● Safe / Stable",
+                shortRed: "Red",
+                shortYellow: "Yellow",
+                shortGreen: "Green",
+                semTitle: "Wildlife Conservation Traffic Light",
+                semSubtitle: "Select the extinction risk level corresponding to each regional species.",
+                semHitsLabel: "Correct",
+                semStreakLabel: "Streak",
+                semSpeakBtn: "🔊 Pronounce",
+                semChooseLabel: "Select the traffic light color:",
+                semRedTitle: "Red • High extinction danger",
+                semRedDesc: "Priority species for regional conservation",
+                semYellowTitle: "Yellow • Moderate risk",
+                semYellowDesc: "Vulnerable population threatened by habitat loss",
+                semGreenTitle: "Green • Safe / Least concern",
+                semGreenDesc: "Domestic species or stable wild population",
+                semFeedbackInit: "Click one of the three traffic light categories to verify.",
+                semCorrectMsg: (word, colorText) => `Correct: ${word} is in ${colorText}.`,
+                semWrongMsg: (word, colorText) => `Incorrect: ${word} belongs to ${colorText}.`,
+                puzTitle: "Regional Wildlife Card Puzzles",
+                puzSubtitle: "Select two tiles to swap their positions until you complete the card.",
+                puzShuffleBtn: "Shuffle tiles",
+                puzInstr: "Tap one tile and then another to swap them.",
+                puzRefLabel: "Reference card",
+                puzSpeakBtn: "🔊 Listen to pronunciation",
+                puzSolvedTitle: (word) => `You completed ${word}!`,
+                puzSolvedMsg: (word) => `You solved the ${word} puzzle and earned +30 Jade Tokens.`,
+                catTitle: "Official Catalog of the 54 Cards",
+                catSubtitle: "Click on any card to hear its pronunciation in the selected language.",
+                filterAll: "All (54)",
+                filterRed: "● High Danger",
+                filterYellow: "● Moderate Risk",
+                filterGreen: "● Safe",
+                searchPlaceholder: "Search animal by name in Maya, Spanish, English, or number (1-54)...",
+                listenAudioLabel: "Listen audio",
+                navHome: "Home",
+                navLoteria: "Lotería",
+                navSemaforo: "Traffic Light",
+                navPuzzle: "Puzzles",
+                navCodice: "Catalog",
+                modalContinue: "Continue",
+                modalEndDeckTitle: "End of deck (54 cards)",
+                modalEndDeckMsg: "All cards have been called. Start a new game to shuffle again.",
+                modalNotCalledTitle: (word) => `"${word}" hasn't been called yet`,
+                modalNotCalledMsg: (word) => `Wait for the caller to announce "${word}" before placing your token.`,
+                modalWinTitle: "¡Ko'one'ex báaxal! Board completed!",
+                modalWinMsg: "You have completed your Lotería board and earned 50 Jade points!",
+                modalIncompleteTitle: "Incomplete board",
+                modalIncompleteMsg: "You still need more called cards to complete the selected win mode."
+            }
+        };
+
+        function t() {
+            return UI_TEXTS[selectedLanguage] || UI_TEXTS.maya;
+        }
+
+        const CARDS_DATA = [
+            { id: 1, maya: "PEEK'", es: "Perro", en: "Dog", emoji: "🐶", status: "green", bg: "#bae6fd" },
+            { id: 2, maya: "MIIS", es: "Gato", en: "Cat", emoji: "🐱", status: "green", bg: "#d9f99d" },
+            { id: 3, maya: "ÁAYIM", es: "Cocodrilo", en: "Crocodile", emoji: "🐊", status: "yellow", bg: "#fde68a" },
+            { id: 4, maya: "BÁALAM", es: "Jaguar", en: "Jaguar", emoji: "🐆", status: "red", bg: "#fecaca" },
+            { id: 5, maya: "BAJ", es: "Tuza", en: "Pocket Gopher", emoji: "🐹", status: "green", bg: "#c7d2fe" },
+            { id: 6, maya: "CH'OMAK", es: "Zorro", en: "Fox", emoji: "🦊", status: "yellow", bg: "#fef08a" },
+            { id: 7, maya: "BAACH", es: "Chachalaca", en: "Chachalaca", emoji: "🐦", status: "green", bg: "#bae6fd" },
+            { id: 8, maya: "CHIIWOL", es: "Tarántula", en: "Tarantula", emoji: "🕷️", status: "green", bg: "#fef08a" },
+            { id: 9, maya: "K'ILI'", es: "Loro / Perico", en: "Parrot", emoji: "🦜", status: "yellow", bg: "#bbf7d0" },
+            { id: 10, maya: "K'ÉEK'EN", es: "Cerdo", en: "Pig", emoji: "🐷", status: "green", bg: "#fef3c7" },
+            { id: 11, maya: "KU'UK", es: "Ardilla", en: "Squirrel", emoji: "🐿️", status: "yellow", bg: "#fbcfe8" },
+            { id: 12, maya: "KOSOM", es: "Golondrina", en: "Swallow", emoji: "🐦‍⬛", status: "green", bg: "#d9f99d" },
+            { id: 13, maya: "KOJ", es: "Puma", en: "Puma / Cougar", emoji: "🦁", status: "red", bg: "#fed7aa" },
+            { id: 14, maya: "MÁAS", es: "Grillo", en: "Cricket", emoji: "🦗", status: "green", bg: "#ddd6fe" },
+            { id: 15, maya: "KITAM", es: "Jabalí / Pecarí", en: "Peccary", emoji: "🐗", status: "yellow", bg: "#c7d2fe" },
+            { id: 16, maya: "KÉEJ", es: "Venado", en: "Deer", emoji: "🦌", status: "yellow", bg: "#fbcfe8" },
+            { id: 17, maya: "KAAN", es: "Serpiente", en: "Snake", emoji: "🐍", status: "yellow", bg: "#bae6fd" },
+            { id: 18, maya: "K'ÁAMBUL", es: "Hocofaisán", en: "Curassow", emoji: "🦃", status: "yellow", bg: "#d9f99d" },
+            { id: 19, maya: "KAAX", es: "Gallina", en: "Hen", emoji: "🐔", status: "green", bg: "#fde68a" },
+            { id: 20, maya: "TSÍIMIN", es: "Caballo", en: "Horse", emoji: "🐴", status: "green", bg: "#fecaca" },
+            { id: 21, maya: "TSO'", es: "Guajolote / Pavo", en: "Turkey", emoji: "🦃", status: "green", bg: "#c7d2fe" },
+            { id: 22, maya: "TAMAN", es: "Borrego / Oveja", en: "Sheep", emoji: "🐑", status: "green", bg: "#fef08a" },
+            { id: 23, maya: "T'U'UL", es: "Conejo", en: "Rabbit", emoji: "🐰", status: "green", bg: "#bae6fd" },
+            { id: 24, maya: "PÉEPEN", es: "Mariposa", en: "Butterfly", emoji: "🦋", status: "yellow", bg: "#fef9c3" },
+            { id: 25, maya: "T'EEL", es: "Gallo", en: "Rooster", emoji: "🐓", status: "green", bg: "#bbf7d0" },
+            { id: 26, maya: "SÍINIK", es: "Hormiga", en: "Ant", emoji: "🐜", status: "green", bg: "#fef3c7" },
+            { id: 27, maya: "SOOTS'", es: "Murciélago", en: "Bat", emoji: "🦇", status: "yellow", bg: "#fbcfe8" },
+            { id: 28, maya: "MUUCH", es: "Rana / Sapo", en: "Frog", emoji: "🐸", status: "green", bg: "#d9f99d" },
+            { id: 29, maya: "KAY", es: "Pez", en: "Fish", emoji: "🐟", status: "green", bg: "#fecaca" },
+            { id: 30, maya: "CH'O'", es: "Ratón", en: "Mouse", emoji: "🐭", status: "green", bg: "#ddd6fe" },
+            { id: 31, maya: "CH'EJUM", es: "Pájaro Carpintero", en: "Woodpecker", emoji: "🐦", status: "green", bg: "#c7d2fe" },
+            { id: 32, maya: "JUUJ", es: "Iguana", en: "Iguana", emoji: "🦎", status: "green", bg: "#fbcfe8" },
+            { id: 33, maya: "CHAB", es: "Oso Hormiguero", en: "Anteater", emoji: "🦡", status: "red", bg: "#bae6fd" },
+            { id: 34, maya: "SAK XIKIM", es: "Tigrillo / Ocelote", en: "Ocelot", emoji: "🐆", status: "red", bg: "#d9f99d" },
+            { id: 35, maya: "TS'UNU'UM", es: "Colibrí", en: "Hummingbird", emoji: "🐦", status: "red", bg: "#fde68a" },
+            { id: 36, maya: "WAKAX", es: "Toro / Res", en: "Bull / Cow", emoji: "🐂", status: "green", bg: "#fecaca" },
+            { id: 37, maya: "WEECH", es: "Armadillo", en: "Armadillo", emoji: "🦔", status: "red", bg: "#c7d2fe" },
+            { id: 38, maya: "XT'UUT", es: "Guacamaya / Loro", en: "Macaw", emoji: "🦜", status: "yellow", bg: "#fef08a" },
+            { id: 39, maya: "CHAKTS'IITS'IB", es: "Cardenal", en: "Cardinal", emoji: "🐦", status: "green", bg: "#bae6fd" },
+            { id: 40, maya: "BEECH'", es: "Codorniz", en: "Quail", emoji: "🐦", status: "green", bg: "#fef9c3" },
+            { id: 41, maya: "JALEB", es: "Tepezcuintle", en: "Paca", emoji: "🦫", status: "yellow", bg: "#bbf7d0" },
+            { id: 42, maya: "CH'OOM", es: "Zopilote", en: "Vulture", emoji: "🦅", status: "green", bg: "#fef3c7" },
+            { id: 43, maya: "K'I'IX PAACH OOCH", es: "Puercoespín", en: "Porcupine", emoji: "🦔", status: "red", bg: "#fbcfe8" },
+            { id: 44, maya: "XOOCH'", es: "Búho / Lechuza", en: "Owl", emoji: "🦉", status: "green", bg: "#d9f99d" },
+            { id: 45, maya: "KUUTS", es: "Pavo Ocelado", en: "Ocellated Turkey", emoji: "🦚", status: "red", bg: "#fecaca" },
+            { id: 46, maya: "MUKUY", es: "Tórtola", en: "Turtle Dove", emoji: "🕊️", status: "green", bg: "#ddd6fe" },
+            { id: 47, maya: "NOOM", es: "Perdiz", en: "Partridge", emoji: "🐦", status: "green", bg: "#c7d2fe" },
+            { id: 48, maya: "PICH'", es: "Tordo", en: "Blackbird", emoji: "🐦‍⬛", status: "green", bg: "#fbcfe8" },
+            { id: 49, maya: "ÚUKUM", es: "Paloma", en: "Pigeon", emoji: "🕊️", status: "green", bg: "#bae6fd" },
+            { id: 50, maya: "PAN CH'EEL", es: "Tucán", en: "Toucan", emoji: "🦤", status: "red", bg: "#d9f99d" },
+            { id: 51, maya: "BA'ATS", es: "Mono Saraguato", en: "Howler Monkey", emoji: "🐒", status: "red", bg: "#bae6fd" },
+            { id: 52, maya: "KAAB", es: "Abeja", en: "Bee", emoji: "🐝", status: "red", bg: "#fef3c7" },
+            { id: 53, maya: "ÁAK", es: "Tortuga", en: "Turtle", emoji: "🐢", status: "green", bg: "#bbf7d0" },
+            { id: 54, maya: "KÓOCAY", es: "Luciérnaga", en: "Firefly", emoji: "🪲", status: "green", bg: "#ddd6fe" }
+        ];
+
+        const OFFICIAL_BOARDS = [
+            { number: 1, title: "CHE' 1 (JUN)", cards: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] },
+            { number: 2, title: "CHE' 2 (KA'A)", cards: [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32] },
+            { number: 3, title: "CHE' 3 (ÓOX)", cards: [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48] },
+            { number: 4, title: "CHE' 4 (KAN)", cards: [49, 50, 3, 4, 5, 6, 51, 8, 9, 52, 11, 53, 13, 54, 15, 16] },
+            { number: 5, title: "CHE' 5 (JO')", cards: [15, 18, 5, 20, 21, 11, 23, 36, 25, 45, 27, 28, 40, 30, 31, 50] },
+            { number: 6, title: "CHE' 6 (WAK)", cards: [13, 34, 6, 36, 37, 16, 39, 54, 21, 42, 43, 28, 45, 52, 12, 1] }
+        ];
+
+        function renderMayanDigitSVG(digit, size = 18) {
+            if (digit === 0) {
+                return `<svg width="${size}" height="${size * 0.55}" viewBox="0 0 24 14" class="mx-auto">
+                    <ellipse cx="12" cy="7" rx="10" ry="5" fill="none" stroke="#0f172a" stroke-width="2"/>
+                    <line x1="6" y1="3" x2="6" y2="11" stroke="#0f172a" stroke-width="1.5"/>
+                    <line x1="12" y1="2" x2="12" y2="12" stroke="#0f172a" stroke-width="1.5"/>
+                    <line x1="18" y1="3" x2="18" y2="11" stroke="#0f172a" stroke-width="1.5"/>
+                </svg>`;
+            }
+            const bars = Math.floor(digit / 5);
+            const dots = digit % 5;
+            let html = `<div class="flex flex-col items-center justify-center gap-[1.5px]">`;
+            if (dots > 0) {
+                html += `<div class="flex items-center justify-center gap-[2px]">`;
+                for (let i = 0; i < dots; i++) {
+                    html += `<span class="w-1.5 h-1.5 rounded-full bg-slate-950 inline-block"></span>`;
+                }
+                html += `</div>`;
+            }
+            for (let b = 0; b < bars; b++) {
+                html += `<div class="w-5 h-[3px] bg-slate-950 rounded-full"></div>`;
+            }
+            html += `</div>`;
+            return html;
+        }
+
+        function createMayanNumeralHTML(num, compact = false) {
+            const topLevel = Math.floor(num / 20);
+            const bottomLevel = num % 20;
+            const numFontSize = compact ? 'text-[9px]' : 'text-xs';
+            return `
+                <div class="flex flex-col items-center justify-center flex-1 w-full gap-0.5 leading-none">
+                    ${topLevel > 0 ? renderMayanDigitSVG(topLevel, compact ? 14 : 18) : ''}
+                    ${renderMayanDigitSVG(bottomLevel, compact ? 14 : 18)}
+                </div>
+                <span class="${numFontSize} font-black text-slate-950 leading-none">${num}</span>
+            `;
+        }
+
+        let selectedLanguage = 'maya';
+        let soundEnabled = true;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function getCardNameByLang(card, lang = selectedLanguage) {
+            if (lang === 'es') return card.es.toUpperCase();
+            if (lang === 'en') return card.en.toUpperCase();
+            return card.maya.toUpperCase();
+        }
+
+        function getLanguageLabel(lang = selectedLanguage) {
+            return (UI_TEXTS[lang] || UI_TEXTS.maya).langLabel;
+        }
+
+        function renderCardArtworkHTML(card, sizeClass = "text-4xl") {
+            return `
+                <img src="imagenes/${card.id}.png" 
+                     alt="${card.maya}" 
+                     class="w-full h-full object-contain p-1 select-none"
+                     onerror="if(this.src.endsWith('.png')){this.src='imagenes/${card.id}.jpg';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+                <span style="display:none;" class="${sizeClass} items-center justify-center select-none">${card.emoji}</span>
+            `;
+        }
+
+        function applyStaticTranslations() {
+            const tx = t();
+            const map = {
+                'ui-header-lang-label': tx.headerLangWord,
+                'headerLangSubtitle': tx.headerSubtitle,
+                'ui-jade-label': tx.jadeLabel,
+                'ui-streak-label': tx.streakLabel,
+                'ui-hero-badge': tx.heroBadge,
+                'ui-hero-desc': tx.heroDesc,
+                'ui-step1-lang': tx.step1Lang,
+                'ui-hero-cta': tx.heroCta,
+                'ui-step2-title': tx.step2Title,
+                'ui-step2-sub': tx.step2Sub,
+                'ui-m1-badge': tx.m1Badge,
+                'ui-m1-title': tx.m1Title,
+                'ui-m1-desc': tx.m1Desc,
+                'ui-m1-action': tx.m1Action,
+                'ui-m2-badge': tx.m2Badge,
+                'ui-m2-title': tx.m2Title,
+                'ui-m2-desc': tx.m2Desc,
+                'ui-m2-action': tx.m2Action,
+                'ui-m3-badge': tx.m3Badge,
+                'ui-m3-title': tx.m3Title,
+                'ui-m3-desc': tx.m3Desc,
+                'ui-m3-action': tx.m3Action,
+                'ui-m4-badge': tx.m4Badge,
+                'ui-m4-title': tx.m4Title,
+                'ui-m4-desc': tx.m4Desc,
+                'ui-m4-action': tx.m4Action,
+                'ui-lot-board-label': tx.lotBoardLabel,
+                'ui-lot-lang-label': tx.lotLangLabel,
+                'ui-lot-mode-label': tx.lotModeLabel,
+                'ui-winmode-line': tx.winModeLine,
+                'ui-winmode-full': tx.winModeFull,
+                'ui-lot-reset-btn': tx.lotResetBtn,
+                'ui-lot-next-btn': tx.nextCardBtn,
+                'ui-lot-repeat-btn': tx.repeatAudioBtn,
+                'ui-lot-players-label': tx.playersTableLabel,
+                'ui-lot-playing-status': tx.playingStatus,
+                'ui-bot1-name': tx.bot1Name,
+                'ui-bot2-name': tx.bot2Name,
+                'ui-lot-history-label': tx.historyLabel,
+                'ui-lot-board-instr': tx.boardInstr,
+                'ui-lot-win-btn': tx.winShoutBtn,
+                'ui-sem-title': tx.semTitle,
+                'ui-sem-subtitle': tx.semSubtitle,
+                'ui-sem-hits-label': tx.semHitsLabel,
+                'ui-sem-streak-label': tx.semStreakLabel,
+                'ui-sem-speak-btn': tx.semSpeakBtn,
+                'ui-sem-choose-label': tx.semChooseLabel,
+                'ui-sem-red-title': tx.semRedTitle,
+                'ui-sem-red-desc': tx.semRedDesc,
+                'ui-sem-yellow-title': tx.semYellowTitle,
+                'ui-sem-yellow-desc': tx.semYellowDesc,
+                'ui-sem-green-title': tx.semGreenTitle,
+                'ui-sem-green-desc': tx.semGreenDesc,
+                'ui-puz-title': tx.puzTitle,
+                'ui-puz-subtitle': tx.puzSubtitle,
+                'ui-puz-shuffle-btn': tx.puzShuffleBtn,
+                'ui-puz-instr': tx.puzInstr,
+                'ui-puz-ref-label': tx.puzRefLabel,
+                'ui-puz-speak-btn': tx.puzSpeakBtn,
+                'ui-cat-title': tx.catTitle,
+                'ui-cat-subtitle': tx.catSubtitle,
+                'filter-all': tx.filterAll,
+                'filter-red': tx.filterRed,
+                'filter-yellow': tx.filterYellow,
+                'filter-green': tx.filterGreen,
+                'ui-nav-home': tx.navHome,
+                'ui-nav-loteria': tx.navLoteria,
+                'ui-nav-semaforo': tx.navSemaforo,
+                'ui-nav-puzzle': tx.navPuzzle,
+                'ui-nav-codice': tx.navCodice,
+                'ui-modal-continue-btn': tx.modalContinue
+            };
+
+            Object.keys(map).forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = map[id];
+            });
+
+            // Traducir opciones de los 6 tableros
+            OFFICIAL_BOARDS.forEach((b, idx) => {
+                const opt = document.getElementById(`ui-board-opt-${idx}`);
+                if (opt) opt.textContent = `${b.title} (${tx.boardOptPrefix} ${b.number})`;
+            });
+
+            const searchInput = document.getElementById('codiceSearch');
+            if (searchInput) searchInput.placeholder = tx.searchPlaceholder;
+
+            document.getElementById('callerHeaderBadge').textContent = `${tx.callerPrefix} • ${tx.langLabel}`;
+            document.getElementById('autoPlayText').textContent = isAutoCalling ? tx.pauseCallerBtn : tx.startCallerBtn;
+            document.getElementById('semaforoFeedback').textContent = tx.semFeedbackInit;
+
+            addJade(0); // Actualiza la insignia de nivel en el idioma elegido
+        }
+
+        function setGameLanguage(lang) {
+            selectedLanguage = lang;
+
+            ['maya', 'es', 'en'].forEach(code => {
+                const btn = document.getElementById(`lang-btn-${code}`);
+                if (!btn) return;
+                btn.className = code === lang
+                    ? "px-2.5 py-1 rounded-lg text-xs font-semibold transition-all bg-[#1b4332] text-white shadow-sm"
+                    : "px-2.5 py-1 rounded-lg text-xs font-semibold transition-all text-stone-600 hover:text-stone-900";
+            });
+
+            ['maya', 'es', 'en'].forEach(code => {
+                const hBtn = document.getElementById(`home-lang-${code}`);
+                if (!hBtn) return;
+                const labels = {
+                    maya: '🌿 Báaxal ich Maaya',
+                    es: '🇲🇽 Jugar en Español',
+                    en: '🇺🇸 Play in English'
+                };
+                hBtn.innerHTML = `<span>${labels[code]}</span>`;
+                hBtn.className = code === lang
+                    ? "btn-clean px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-amber-400 text-stone-950 shadow-md flex items-center gap-2"
+                    : "btn-clean px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-white/10 hover:bg-white/20 text-white border border-white/20 flex items-center gap-2";
+            });
+
+            const c4 = CARDS_DATA.find(c => c.id === 4);
+            const c50 = CARDS_DATA.find(c => c.id === 50);
+            if (document.getElementById('heroCard4Title')) document.getElementById('heroCard4Title').textContent = getCardNameByLang(c4);
+            if (document.getElementById('heroCard50Title')) document.getElementById('heroCard50Title').textContent = getCardNameByLang(c50);
+
+            const dropdown = document.getElementById('loteriaLangSelect');
+            if (dropdown) dropdown.value = lang;
+
+            applyStaticTranslations();
+            renderLoteriaBoard();
+            refreshCallerCardLanguage();
+            renderBotMiniGrids();
+            renderHistoryStrip();
+            refreshSemaforoLanguage();
+            populatePuzzleSelector();
+            initPuzzle();
+            renderCodiceGallery();
+
+            playTone(580, 0.08);
+        }
+
+        function playTone(freq = 520, duration = 0.12, type = 'sine') {
+            if (!soundEnabled) return;
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {}
+        }
+
+        function playSuccessChord() {
+            playTone(523.25, 0.12, 'triangle');
+            setTimeout(() => playTone(659.25, 0.12, 'triangle'), 90);
+            setTimeout(() => playTone(783.99, 0.25, 'triangle'), 180);
+        }
+
+        function playErrorSound() {
+            playTone(220, 0.2, 'sawtooth');
+            setTimeout(() => playTone(180, 0.25, 'sawtooth'), 120);
+        }
+
+        function speakCard(card, onCompleteCallback = null) {
+            if (!soundEnabled || !('speechSynthesis' in window)) {
+                if (onCompleteCallback) setTimeout(onCompleteCallback, 450);
+                return;
+            }
+            window.speechSynthesis.cancel();
+            let textToSpeak = '';
+            let voiceLang = 'es-MX';
+
+            if (selectedLanguage === 'maya') {
+                textToSpeak = card.maya.toLowerCase().replace(/'/g, ' ').replace(/áa/g, 'aaa').replace(/é/g, 'eee').replace(/íi/g, 'iii').replace(/óo/g, 'ooo').replace(/úu/g, 'uuu');
+                voiceLang = 'es-MX';
+            } else if (selectedLanguage === 'es') {
+                textToSpeak = card.es.split('/')[0].trim();
+                voiceLang = 'es-MX';
+            } else {
+                textToSpeak = card.en.split('/')[0].trim();
+                voiceLang = 'en-US';
+            }
+
+            const utter = new SpeechSynthesisUtterance(textToSpeak);
+            utter.lang = voiceLang;
+            utter.rate = 0.75;
+            utter.pitch = 1.0;
+
+            let callbackFired = false;
+            const triggerDone = () => {
+                if (callbackFired) return;
+                callbackFired = true;
+                if (onCompleteCallback) onCompleteCallback();
+            };
+
+            utter.onend = triggerDone;
+            utter.onerror = triggerDone;
+            setTimeout(triggerDone, 2600);
+            window.speechSynthesis.speak(utter);
+        }
+
+        function speakCardById(id) {
+            const card = CARDS_DATA.find(c => c.id === id);
+            if (card) {
+                playTone(600, 0.08);
+                speakCard(card);
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            document.getElementById('soundBtn').innerHTML = soundEnabled ? '<span>🔊</span>' : '<span>🔇</span>';
+            if (soundEnabled) playTone(660, 0.1);
+        }
+
+        let jadeCoins = 100;
+        let streakCount = 0;
+
+        function addJade(amount) {
+            jadeCoins += amount;
+            document.getElementById('jadeCounter').textContent = jadeCoins;
+            const level = Math.max(1, Math.floor(jadeCoins / 100));
+            const tx = t();
+            const rankName = tx.ranks[Math.min(tx.ranks.length - 1, level - 1)];
+            const badge = document.getElementById('playerLevelBadge');
+            if (badge) badge.textContent = `${tx.levelWord} ${level} • ${rankName}`;
+        }
+
+        function updateStreak(reset = false) {
+            streakCount = reset ? 0 : streakCount + 1;
+            document.getElementById('streakCounter').textContent = streakCount;
+        }
+
+        let currentBoardIdx = 0;
+        let shuffledDeck = [];
+        let drawnCardsIds = [];
+        let markedBoardCells = new Set();
+        let isAutoCalling = false;
+        let countdownSecondsLeft = 7;
+        let countdownTimerId = null;
+
+        let bot1Board = OFFICIAL_BOARDS[1].cards;
+        let bot2Board = OFFICIAL_BOARDS[2].cards;
+        let bot1Marked = new Set();
+        let bot2Marked = new Set();
+
+        function renderBotMiniGrids() {
+            const tx = t();
+            const b1Grid = document.getElementById('bot1MiniGrid');
+            const b2Grid = document.getElementById('bot2MiniGrid');
+            if (b1Grid) b1Grid.innerHTML = bot1Board.map((_, i) => `<div class="bot-mini-cell ${bot1Marked.has(i) ? 'marked' : ''}"></div>`).join('');
+            if (b2Grid) b2Grid.innerHTML = bot2Board.map((_, i) => `<div class="bot-mini-cell ${bot2Marked.has(i) ? 'marked' : ''}"></div>`).join('');
+            document.getElementById('bot1CountText').textContent = tx.botMarked(bot1Marked.size);
+            document.getElementById('bot2CountText').textContent = tx.botMarked(bot2Marked.size);
+        }
+
+        function updateBotsForDrawnCard(cardId) {
+            const idx1 = bot1Board.indexOf(cardId);
+            if (idx1 !== -1) bot1Marked.add(idx1);
+            const idx2 = bot2Board.indexOf(cardId);
+            if (idx2 !== -1) bot2Marked.add(idx2);
+            renderBotMiniGrids();
+        }
+
+        function shuffleArray(arr) {
+            const copy = [...arr];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function changeBoard() {
+            currentBoardIdx = parseInt(document.getElementById('boardSelect').value, 10);
+            resetLoteriaGame();
+        }
+
+        function clearSevenSecondCountdown() {
+            if (countdownTimerId) {
+                clearInterval(countdownTimerId);
+                countdownTimerId = null;
+            }
+        }
+
+        function updateCountdownUI(seconds, statusText) {
+            const badge = document.getElementById('countdownSecondsBadge');
+            const bar = document.getElementById('countdownProgressBar');
+            const label = document.getElementById('countdownStatusLabel');
+            if (label && statusText) label.innerHTML = statusText;
+            if (badge) badge.textContent = `${seconds}s`;
+            if (bar) bar.style.width = `${Math.max(0, Math.min(100, (seconds / 7) * 100))}%`;
+        }
+
+        function startSevenSecondSearchTimer() {
+            clearSevenSecondCountdown();
+            countdownSecondsLeft = 7;
+            updateCountdownUI(7, t().timerSearching);
+
+            countdownTimerId = setInterval(() => {
+                countdownSecondsLeft -= 1;
+                if (countdownSecondsLeft > 0) {
+                    playTone(440, 0.03, 'sine');
+                    updateCountdownUI(countdownSecondsLeft, t().timerSearching);
+                } else {
+                    clearSevenSecondCountdown();
+                    updateCountdownUI(0, t().timerNext);
+                    if (isAutoCalling) {
+                        drawNextLoteriaCard(false);
+                    } else {
+                        updateCountdownUI(7, t().timerDone);
+                    }
+                }
+            }, 1000);
+        }
+
+        function resetLoteriaGame() {
+            const tx = t();
+            stopAutoCaller();
+            clearSevenSecondCountdown();
+            shuffledDeck = shuffleArray(CARDS_DATA);
+            drawnCardsIds = [];
+            markedBoardCells.clear();
+
+            document.getElementById('deckProgress').textContent = tx.deckProgress(0, 54);
+            document.getElementById('callerMayanBox').innerHTML = createMayanNumeralHTML(1);
+            document.getElementById('callerEmoji').innerHTML = '🎴';
+            document.getElementById('callerPrimaryName').textContent = "KO'ONE'EX BÁAXAL";
+            document.getElementById('callerSubHint').textContent = `${tx.activeLangPrefix} ${tx.langLabel}`;
+            document.getElementById('callerSemaforoText').textContent = tx.waitingStatus;
+            document.getElementById('callerSemaforoBadge').className = "px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider bg-white/90 text-stone-700 border border-stone-300 shadow-sm";
+            document.getElementById('drawnHistoryStrip').innerHTML = `<span class="text-xs text-stone-400 italic">${tx.historyEmpty}</span>`;
+
+            bot1Board = OFFICIAL_BOARDS[(currentBoardIdx + 1) % OFFICIAL_BOARDS.length].cards;
+            bot2Board = OFFICIAL_BOARDS[(currentBoardIdx + 2) % OFFICIAL_BOARDS.length].cards;
+            bot1Marked.clear();
+            bot2Marked.clear();
+            renderBotMiniGrids();
+
+            updateCountdownUI(7, tx.timerDefault);
+            renderLoteriaBoard();
+        }
+
+        function refreshCallerCardLanguage() {
+            const tx = t();
+            document.getElementById('deckProgress').textContent = tx.deckProgress(drawnCardsIds.length, 54);
+            if (drawnCardsIds.length === 0) {
+                document.getElementById('callerSubHint').textContent = `${tx.activeLangPrefix} ${tx.langLabel}`;
+                document.getElementById('callerSemaforoText').textContent = tx.waitingStatus;
+                updateCountdownUI(7, tx.timerDefault);
+                return;
+            }
+            const currentId = drawnCardsIds[drawnCardsIds.length - 1];
+            const card = CARDS_DATA.find(c => c.id === currentId);
+            if (card) {
+                document.getElementById('callerPrimaryName').textContent = getCardNameByLang(card);
+                document.getElementById('callerSubHint').textContent = `${tx.cardNumPrefix} #${card.id} • ${tx.langLabel}`;
+                const badgeText = document.getElementById('callerSemaforoText');
+                if (card.status === 'red') badgeText.textContent = tx.statusRedBadge;
+                else if (card.status === 'yellow') badgeText.textContent = tx.statusYellowBadge;
+                else badgeText.textContent = tx.statusGreenBadge;
+            }
+        }
+
+        function renderHistoryStrip() {
+            const tx = t();
+            const strip = document.getElementById('drawnHistoryStrip');
+            if (drawnCardsIds.length === 0) {
+                strip.innerHTML = `<span class="text-xs text-stone-400 italic">${tx.historyEmpty}</span>`;
+                return;
+            }
+            strip.innerHTML = drawnCardsIds.slice().reverse().slice(0, 10).map(id => {
+                const c = CARDS_DATA.find(x => x.id === id);
+                return `<span class="inline-flex items-center gap-1.5 bg-stone-100 border border-stone-200 px-2.5 py-1 rounded-lg text-xs font-semibold text-stone-800 shrink-0">
+                    <span>#${c.id}</span> <span>${getCardNameByLang(c)}</span>
+                </span>`;
+            }).join('');
+        }
+
+        function renderLoteriaBoard() {
+            const boardObj = OFFICIAL_BOARDS[currentBoardIdx];
+            document.getElementById('boardTitleLabel').textContent = boardObj.title;
+            document.getElementById('boardHeaderMayanNum').innerHTML = createMayanNumeralHTML(boardObj.number, true);
+
+            const grid = document.getElementById('loteriaBoardGrid');
+            grid.innerHTML = '';
+
+            boardObj.cards.forEach((cardId, idx) => {
+                const card = CARDS_DATA.find(c => c.id === cardId);
+                const isMarked = markedBoardCells.has(idx);
+                const displayWord = getCardNameByLang(card);
+                const statusDotColor = card.status === 'red' ? 'bg-red-600' : card.status === 'yellow' ? 'bg-amber-500' : 'bg-emerald-600';
+
+                const cell = document.createElement('div');
+                cell.className = `relative aspect-[3/4] rounded-lg p-1.5 sm:p-2 flex flex-col justify-between cursor-pointer printed-card hover:scale-[1.01] select-none`;
+                cell.style.backgroundColor = card.bg;
+                cell.onclick = () => onBoardCellTap(idx, card);
+
+                cell.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div class="bg-white border border-stone-900 w-7 h-9 sm:w-8 sm:h-10 flex flex-col items-center justify-between p-0.5">
+                            ${createMayanNumeralHTML(card.id, true)}
+                        </div>
+                        <span class="w-2.5 h-2.5 rounded-full ${statusDotColor} border border-white"></span>
+                    </div>
+                    <div class="my-auto mx-auto w-12 h-12 sm:w-16 sm:h-16 rounded-xl animal-art-frame flex items-center justify-center overflow-hidden select-none">
+                        ${renderCardArtworkHTML(card, 'text-2xl sm:text-4xl')}
+                    </div>
+                    <div class="bg-white/95 rounded py-1 px-1 text-center border border-stone-200/80">
+                        <div class="font-display font-bold text-[10px] sm:text-xs text-stone-900 truncate uppercase tracking-tight">${displayWord}</div>
+                    </div>
+                    ${isMarked ? `
+                        <div class="absolute inset-0 bg-stone-900/20 rounded-lg flex items-center justify-center">
+                            <div class="w-11 h-11 rounded-full jade-token flex items-center justify-center border-2 border-white/80">
+                                <span class="w-3 h-3 rounded-full bg-white/30"></span>
+                            </div>
+                        </div>
+                    ` : ''}
+                `;
+                grid.appendChild(cell);
+            });
+        }
+
+        function drawNextLoteriaCard() {
+            const tx = t();
+            clearSevenSecondCountdown();
+            if (drawnCardsIds.length >= shuffledDeck.length) {
+                stopAutoCaller();
+                showModal('🎴', tx.modalEndDeckTitle, tx.modalEndDeckMsg);
+                return;
+            }
+
+            const card = shuffledDeck[drawnCardsIds.length];
+            drawnCardsIds.push(card.id);
+            updateBotsForDrawnCard(card.id);
+
+            const container = document.getElementById('callerCardContainer');
+            container.style.backgroundColor = card.bg;
+            container.classList.remove('card-bounce');
+            void container.offsetWidth;
+            container.classList.add('card-bounce');
+
+            document.getElementById('deckProgress').textContent = tx.deckProgress(drawnCardsIds.length, 54);
+            document.getElementById('callerMayanBox').innerHTML = createMayanNumeralHTML(card.id);
+            document.getElementById('callerEmoji').innerHTML = renderCardArtworkHTML(card, 'text-6xl sm:text-7xl');
+            document.getElementById('callerPrimaryName').textContent = getCardNameByLang(card);
+            document.getElementById('callerSubHint').textContent = `${tx.cardNumPrefix} #${card.id} • ${tx.langLabel}`;
+
+            const badge = document.getElementById('callerSemaforoBadge');
+            const badgeText = document.getElementById('callerSemaforoText');
+            if (card.status === 'red') {
+                badge.className = "px-2.5 py-1 rounded-md text-[11px] font-bold uppercase bg-red-600 text-white shadow-sm";
+                badgeText.textContent = tx.statusRedBadge;
+            } else if (card.status === 'yellow') {
+                badge.className = "px-2.5 py-1 rounded-md text-[11px] font-bold uppercase bg-amber-400 text-stone-900 shadow-sm";
+                badgeText.textContent = tx.statusYellowBadge;
+            } else {
+                badge.className = "px-2.5 py-1 rounded-md text-[11px] font-bold uppercase bg-emerald-600 text-white shadow-sm";
+                badgeText.textContent = tx.statusGreenBadge;
+            }
+
+            renderHistoryStrip();
+            playTone(587.33, 0.08);
+            updateCountdownUI(7, tx.timerSpeaking);
+            speakCard(card, () => startSevenSecondSearchTimer());
+        }
+
+        function speakCurrentCard() {
+            if (drawnCardsIds.length === 0) return;
+            const currentId = drawnCardsIds[drawnCardsIds.length - 1];
+            const card = CARDS_DATA.find(c => c.id === currentId);
+            if (card) {
+                playTone(600, 0.08);
+                speakCard(card);
+            }
+        }
+
+        function onBoardCellTap(cellIdx, card) {
+            const tx = t();
+            const word = getCardNameByLang(card);
+            if (markedBoardCells.has(cellIdx)) {
+                speakCard(card);
+                return;
+            }
+            if (!drawnCardsIds.includes(card.id)) {
+                playErrorSound();
+                showModal('⏳', tx.modalNotCalledTitle(word), tx.modalNotCalledMsg(word));
+                return;
+            }
+            markedBoardCells.add(cellIdx);
+            playSuccessChord();
+            addJade(5);
+            updateStreak(false);
+            renderLoteriaBoard();
+        }
+
+        function toggleAutoCaller() {
+            if (isAutoCalling) {
+                stopAutoCaller();
+            } else {
+                isAutoCalling = true;
+                document.getElementById('autoPlayIcon').textContent = "⏸";
+                document.getElementById('autoPlayText').textContent = t().pauseCallerBtn;
+                drawNextLoteriaCard();
+            }
+        }
+
+        function stopAutoCaller() {
+            isAutoCalling = false;
+            clearSevenSecondCountdown();
+            document.getElementById('autoPlayIcon').textContent = "▶";
+            document.getElementById('autoPlayText').textContent = t().startCallerBtn;
+        }
+
+        function checkBoardWinCondition() {
+            const mode = document.getElementById('winModeSelect').value;
+            if (mode === 'full') return markedBoardCells.size === 16;
+            const lines = [
+                [0,1,2,3], [4,5,6,7], [8,9,10,11], [12,13,14,15],
+                [0,4,8,12], [1,5,9,13], [2,6,10,14], [3,7,11,15],
+                [0,5,10,15], [3,6,9,12]
+            ];
+            return lines.some(line => line.every(idx => markedBoardCells.has(idx)));
+        }
+
+        function claimLoteriaWin() {
+            const tx = t();
+            if (checkBoardWinCondition()) {
+                stopAutoCaller();
+                playSuccessChord();
+                addJade(50);
+                showModal('🏆', tx.modalWinTitle, tx.modalWinMsg);
+            } else {
+                playErrorSound();
+                showModal('📋', tx.modalIncompleteTitle, tx.modalIncompleteMsg);
+            }
+        }
+
+        /* =====================================================================
+           MODE 2: SEMÁFORO
+           ===================================================================== */
+        let currentSemaforoCard = CARDS_DATA[3];
+        let semaforoScore = 0;
+
+        function refreshSemaforoLanguage() {
+            if (!currentSemaforoCard) return;
+            const tx = t();
+            document.getElementById('semPrimaryName').textContent = getCardNameByLang(currentSemaforoCard);
+            document.getElementById('semLangTag').textContent = `${tx.activeLangPrefix} ${tx.langLabel}`;
+        }
+
+        function nextSemaforoCard() {
+            document.getElementById('lightRed').classList.remove('red-glow');
+            document.getElementById('lightYellow').classList.remove('yellow-glow');
+            document.getElementById('lightGreen').classList.remove('green-glow');
+
+            const randomIdx = Math.floor(Math.random() * CARDS_DATA.length);
+            currentSemaforoCard = CARDS_DATA[randomIdx];
+
+            const cardEl = document.getElementById('semaforoCard');
+            cardEl.style.backgroundColor = currentSemaforoCard.bg;
+            document.getElementById('semMayanBox').innerHTML = createMayanNumeralHTML(currentSemaforoCard.id);
+            document.getElementById('semEmoji').innerHTML = `<div class="w-32 h-32 mx-auto flex items-center justify-center">${renderCardArtworkHTML(currentSemaforoCard, 'text-7xl sm:text-8xl')}</div>`;
+            refreshSemaforoLanguage();
+        }
+
+        function guessSemaforo(chosenColor) {
+            const tx = t();
+            document.getElementById('lightRed').classList.toggle('red-glow', chosenColor === 'red');
+            document.getElementById('lightYellow').classList.toggle('yellow-glow', chosenColor === 'yellow');
+            document.getElementById('lightGreen').classList.toggle('green-glow', chosenColor === 'green');
+
+            const feedbackEl = document.getElementById('semaforoFeedback');
+            const correctColor = currentSemaforoCard.status;
+            const animalWord = getCardNameByLang(currentSemaforoCard);
+            const statusLabels = {
+                red: tx.statusRedBadge,
+                yellow: tx.statusYellowBadge,
+                green: tx.statusGreenBadge
+            };
+
+            if (chosenColor === correctColor) {
+                playSuccessChord();
+                semaforoScore += 10;
+                addJade(10);
+                updateStreak(false);
+                document.getElementById('semaforoScore').textContent = semaforoScore;
+                document.getElementById('semaforoCombo').textContent = `x${streakCount}`;
+                feedbackEl.className = "mt-5 min-h-[52px] w-full bg-emerald-50 border border-emerald-300 rounded-xl p-3 text-center flex items-center justify-center text-xs sm:text-sm font-semibold text-emerald-900";
+                feedbackEl.innerHTML = tx.semCorrectMsg(animalWord, statusLabels[correctColor]);
+                speakCard(currentSemaforoCard);
+                setTimeout(nextSemaforoCard, 1500);
+            } else {
+                playErrorSound();
+                updateStreak(true);
+                document.getElementById('semaforoCombo').textContent = `x1`;
+                feedbackEl.className = "mt-5 min-h-[52px] w-full bg-red-50 border border-red-300 rounded-xl p-3 text-center flex items-center justify-center text-xs sm:text-sm font-semibold text-red-900";
+                feedbackEl.innerHTML = tx.semWrongMsg(animalWord, statusLabels[correctColor]);
+            }
+        }
+
+        /* =====================================================================
+           MODE 3: ROMPECABEZAS (CON LAS 54 IMÁGENES LOCALES)
+           ===================================================================== */
+        let puzzleTilesOrder = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        let selectedTilePosition = null;
+
+        function populatePuzzleSelector() {
+            const selectEl = document.getElementById('puzzleAnimalSelect');
+            if (!selectEl) return;
+            const currentVal = selectEl.value || "4";
+            selectEl.innerHTML = CARDS_DATA.map(c => `<option value="${c.id}">#${c.id} ${getCardNameByLang(c)}</option>`).join('');
+            selectEl.value = currentVal;
+        }
+
+        function initPuzzle() {
+            const tx = t();
+            const selectEl = document.getElementById('puzzleAnimalSelect');
+            if (!selectEl.value) populatePuzzleSelector();
+            const cardId = parseInt(selectEl.value || "4", 10);
+            const card = CARDS_DATA.find(c => c.id === cardId) || CARDS_DATA[3];
+
+            const previewCard = document.getElementById('puzzlePreviewCard');
+            if (previewCard) {
+                previewCard.style.backgroundColor = card.bg;
+                const dotColor = card.status === 'red' ? 'bg-red-600' : card.status === 'yellow' ? 'bg-amber-500' : 'bg-emerald-600';
+                previewCard.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div class="bg-white border border-stone-900 w-7 h-9 flex flex-col items-center justify-between p-0.5">
+                            ${createMayanNumeralHTML(card.id, true)}
+                        </div>
+                        <span class="w-2.5 h-2.5 rounded-full ${dotColor} border border-white"></span>
+                    </div>
+                    <div class="h-20 flex items-center justify-center overflow-hidden my-auto">
+                        ${renderCardArtworkHTML(card, 'text-4xl')}
+                    </div>
+                    <div class="bg-white rounded py-0.5 px-1 text-center font-extrabold text-[10px] text-stone-900 uppercase truncate">
+                        ${getCardNameByLang(card)}
+                    </div>
+                `;
+            }
+
+            document.getElementById('puzzleInfoTitle').textContent = getCardNameByLang(card);
+            document.getElementById('puzzleInfoLanguages').textContent = `${tx.activeLangPrefix} ${tx.langLabel}`;
+            const badge = document.getElementById('puzzleInfoBadge');
+            if (card.status === 'red') {
+                badge.className = "mt-2.5 px-3 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-800 border border-red-200";
+                badge.textContent = tx.statusRedBadge;
+            } else if (card.status === 'yellow') {
+                badge.className = "mt-2.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200";
+                badge.textContent = tx.statusYellowBadge;
+            } else {
+                badge.className = "mt-2.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200";
+                badge.textContent = tx.statusGreenBadge;
+            }
+
+            shufflePuzzle();
+        }
+
+        function shufflePuzzle() {
+            puzzleTilesOrder = shuffleArray([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+            if (puzzleTilesOrder.every((val, idx) => val === idx)) {
+                [puzzleTilesOrder[0], puzzleTilesOrder[1]] = [puzzleTilesOrder[1], puzzleTilesOrder[0]];
+            }
+            selectedTilePosition = null;
+            renderPuzzleGrid();
+        }
+
+        function renderPuzzleGrid() {
+            const grid = document.getElementById('puzzleGrid');
+            grid.innerHTML = '';
+            const cardId = parseInt(document.getElementById('puzzleAnimalSelect').value || "4", 10);
+            const card = CARDS_DATA.find(c => c.id === cardId) || CARDS_DATA[3];
+            const dotColor = card.status === 'red' ? 'bg-red-600' : card.status === 'yellow' ? 'bg-amber-500' : 'bg-emerald-600';
+
+            puzzleTilesOrder.forEach((originalPieceIdx, currentPos) => {
+                const tile = document.createElement('div');
+                const isSelected = selectedTilePosition === currentPos;
+                tile.className = `w-full h-full rounded-xl cursor-pointer transition-transform overflow-hidden relative border border-white/70 ${isSelected ? 'ring-4 ring-amber-400 scale-95 z-10' : 'hover:scale-[1.02]'}`;
+                tile.style.backgroundColor = card.bg;
+
+                const srcCol = originalPieceIdx % 3;
+                const srcRow = Math.floor(originalPieceIdx / 3);
+
+                tile.innerHTML = `
+                    <div style="
+                        width: 300%;
+                        height: 300%;
+                        transform: translate(-${srcCol * 33.3333}%, -${srcRow * 33.3333}%);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        padding: 16px;
+                        box-sizing: border-box;
+                        pointer-events: none;
+                    ">
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                            <div class="bg-white border-2 border-stone-900 w-12 h-14 flex flex-col items-center justify-between p-1">
+                                ${createMayanNumeralHTML(card.id)}
+                            </div>
+                            <span class="w-4 h-4 rounded-full ${dotColor} border-2 border-white"></span>
+                        </div>
+                        <div style="height: 155px; display:flex; align-items:center; justify-content:center;">
+                            <img src="imagenes/${card.id}.png" style="max-width: 82%; max-height: 145px; object-fit: contain;" onerror="this.src='imagenes/${card.id}.jpg'">
+                        </div>
+                        <div class="bg-white rounded-lg py-1.5 px-2 text-center border border-stone-300 font-extrabold text-sm text-stone-900 uppercase">
+                            ${getCardNameByLang(card)}
+                        </div>
+                    </div>
+                `;
+                tile.onclick = () => onPuzzleTileTap(currentPos);
+                grid.appendChild(tile);
+            });
+        }
+
+        function onPuzzleTileTap(pos) {
+            const tx = t();
+            playTone(480, 0.07);
+            if (selectedTilePosition === null) {
+                selectedTilePosition = pos;
+                renderPuzzleGrid();
+                return;
+            }
+            if (selectedTilePosition === pos) {
+                selectedTilePosition = null;
+                renderPuzzleGrid();
+                return;
+            }
+
+            const firstPos = selectedTilePosition;
+            [puzzleTilesOrder[firstPos], puzzleTilesOrder[pos]] = [puzzleTilesOrder[pos], puzzleTilesOrder[firstPos]];
+            selectedTilePosition = null;
+            renderPuzzleGrid();
+
+            if (puzzleTilesOrder.every((val, idx) => val === idx)) {
+                playSuccessChord();
+                addJade(30);
+                updateStreak(false);
+                const cardId = parseInt(document.getElementById('puzzleAnimalSelect').value, 10);
+                const card = CARDS_DATA.find(c => c.id === cardId);
+                const word = getCardNameByLang(card);
+                speakCard(card);
+                showModal('🧩', tx.puzSolvedTitle(word), tx.puzSolvedMsg(word));
+            }
+        }
+
+        /* =====================================================================
+           MODE 4: CATÁLOGO DE LAS 54 CARTAS
+           ===================================================================== */
+        let currentCodiceFilter = 'all';
+
+        function filterCodice(status) {
+            currentCodiceFilter = status;
+            renderCodiceGallery();
+        }
+
+        function renderCodiceGallery() {
+            const tx = t();
+            const query = (document.getElementById('codiceSearch').value || '').toLowerCase().trim();
+            const grid = document.getElementById('codiceGrid');
+            grid.innerHTML = '';
+
+            const filtered = CARDS_DATA.filter(card => {
+                const matchesStatus = currentCodiceFilter === 'all' || card.status === currentCodiceFilter;
+                const matchesSearch = !query ||
+                    card.maya.toLowerCase().includes(query) ||
+                    card.es.toLowerCase().includes(query) ||
+                    card.en.toLowerCase().includes(query) ||
+                    String(card.id) === query;
+                return matchesStatus && matchesSearch;
+            });
+
+            filtered.forEach(card => {
+                const semBadge = card.status === 'red'
+                    ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-600 text-white">${tx.shortRed}</span>`
+                    : card.status === 'yellow'
+                    ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-400 text-stone-900">${tx.shortYellow}</span>`
+                    : `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-600 text-white">${tx.shortGreen}</span>`;
+
+                const primaryWord = getCardNameByLang(card);
+
+                const item = document.createElement('div');
+                item.className = "rounded-xl p-2.5 flex flex-col justify-between printed-card cursor-pointer hover:-translate-y-0.5 text-stone-900";
+                item.style.backgroundColor = card.bg;
+                item.onclick = () => speakCardById(card.id);
+
+                item.innerHTML = `
+                    <div class="flex justify-between items-start gap-1">
+                        <div class="bg-white border border-stone-900 w-9 h-11 flex flex-col items-center justify-between p-0.5">
+                            ${createMayanNumeralHTML(card.id, true)}
+                        </div>
+                        ${semBadge}
+                    </div>
+                    <div class="w-20 h-20 mx-auto my-2 flex items-center justify-center overflow-hidden select-none">
+                        ${renderCardArtworkHTML(card, 'text-5xl')}
+                    </div>
+                    <div class="bg-white rounded-md p-2 text-center border border-stone-200">
+                        <div class="font-display font-bold text-xs sm:text-sm text-stone-900 leading-tight uppercase truncate">${primaryWord}</div>
+                        <div class="text-[10px] font-medium text-stone-500 mt-0.5">${tx.listenAudioLabel}</div>
+                    </div>
+                `;
+                grid.appendChild(item);
+            });
+        }
+
+        function switchTab(tabName) {
+            stopAutoCaller();
+            ['inicio', 'loteria', 'semaforo', 'puzzle', 'codice'].forEach(tName => {
+                const view = document.getElementById(`view-${tName}`);
+                const btn = document.getElementById(`tab-${tName}`);
+                if (!view || !btn) return;
+                if (tName === tabName) {
+                    view.classList.remove('hidden');
+                    btn.className = "py-1.5 px-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[#1b4332] bg-emerald-50/90 font-bold text-[11px] transition-all border border-emerald-200/80";
+                } else {
+                    view.classList.add('hidden');
+                    btn.className = "py-1.5 px-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-stone-500 hover:text-stone-900 font-semibold text-[11px] transition-all";
+                }
+            });
+
+            if (tabName === 'puzzle') initPuzzle();
+            if (tabName === 'codice') renderCodiceGallery();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            playTone(520, 0.06);
+        }
+
+        function showModal(icon, title, message) {
+            document.getElementById('modalIcon').textContent = icon;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = message;
+            document.getElementById('gameModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('gameModal').classList.add('hidden');
+            playTone(600, 0.08);
+        }
+
+        window.onload = function () {
+            if (document.getElementById('heroCard4Mayan')) {
+                document.getElementById('heroCard4Mayan').innerHTML = createMayanNumeralHTML(4, true);
+            }
+            if (document.getElementById('heroCard50Mayan')) {
+                document.getElementById('heroCard50Mayan').innerHTML = createMayanNumeralHTML(50, true);
+            }
+            setGameLanguage('maya');
+            resetLoteriaGame();
+            nextSemaforoCard();
+            renderCodiceGallery();
+        };
+    </script>
+</body>
+</html>
